@@ -25,6 +25,7 @@ const ProjectsContent = () => (
             "MISSION LOGS: PROJECT ARCHIVES"
         ),
         React.createElement('div', { className: "space-y-6" },
+            // Block 1: Code Institute
             React.createElement('div', { className: "border-l-2 border-voyager-orange pl-4" },
                 React.createElement('h4', { className: "text-xl text-voyager-tan font-bold" },
                     React.createElement('a', {
@@ -34,8 +35,8 @@ const ProjectsContent = () => (
                         style: { color: 'inherit', textDecoration: 'none' }
                     }, "Code Institute 5 Day Challenge")
                 ),
-                React.createElement('p', { className: "text-sm text-voyager-blue" }, "Stardate: 2023.Q4"),
-                React.createElement('p', { className: "mt-2" }, "I embarked on Mission Directive: A 5-day rapid deployment exercise to construct a functional web interface.)"),
+                React.createElement('p', { className: "text-sm text-voyager-blue" }, "Stardate: 2025.Q2"),
+                React.createElement('p', { className: "mt-2" }, "I embarked on Mission Directive: A 5-day rapid deployment exercise to construct a functional web interface."),
                 React.createElement('h4', { className: "text-l text-voyager-tan font-bold" }, "Execution Summery:"),
                 React.createElement('h5', { className: "text-l text-voyager-tan font-bold" }, "HTML Protocols (Structural Schematics):"),
                 React.createElement('p', { className: "mt-2" }, "Headings (<h1>-<h5>): Established communication priority."),
@@ -46,17 +47,33 @@ const ProjectsContent = () => (
                 React.createElement('h5', { className: "text-l text-voyager-tan font-bold" }, "CSS Protocols (Aesthetic Calibration):"),
                 React.createElement('p', { className: "mt-2" }, "Tag Selectors: Calibrated all standard-issue components for a uniform appearance."),
                 React.createElement('p', { className: "mt-2" }, "ID Selectors: Targeted unique, mission-critical components for specific styling. Each ID must be a unique identifier."),
-                React.createElement('p', { className: "mt-2" }, "Class Selectors: Applied standard visual protocols to multiple components, allowing for efficient and reusable styling across the fleet of elements.)"),
+                React.createElement('p', { className: "mt-2" }, "Class Selectors: Applied standard visual protocols to multiple components, allowing for efficient and reusable styling across the fleet of elements.")
             ),
+            // Block 2: Cheat Sheets
             React.createElement('div', { className: "border-l-2 border-voyager-orange pl-4" },
-                React.createElement('h4', { className: "text-xl text-voyager-tan font-bold" }, "Project Chimera"),
-                React.createElement('p', { className: "text-sm text-voyager-blue" }, "Stardate: 2022.Q2"),
-                React.createElement('p', { className: "mt-2" }, "Led the frontend overhaul of the inter-ship communication system. Migrated a legacy Angular codebase to a modern Next.js application, improving performance by 300% and enhancing user experience for over 50,000 crew members.")
+                React.createElement('h4', { className: "text-xl text-voyager-tan font-bold" },
+                    React.createElement('a', {
+                        href: "https://github.com/Scott-oustudent/Cheat-Sheets",
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                        style: { color: 'inherit', textDecoration: 'none' }
+                    }, "Cheat Sheets")
+                ),
+                React.createElement('p', { className: "text-sm text-voyager-blue" }, "Stardate: 2025.Q1"),
+                React.createElement('p', { className: "mt-2" }, "Recognizing a tactical need for immediate access to critical information, I commissioned the establishment of the Cheatsheet Databank.This centralized repository was engineered to serve as a rapid-access archive for all crew members. It contains vital operational schematics and command syntax guides for a wide array of programming dialects and communication protocols, including Markdown. The primary objective is to ensure any operator can swiftly reference complex command structures, streamlining mission execution and enhancing operational efficiency across the fleet.")
             ),
+            // Block 3: MathTool
             React.createElement('div', { className: "border-l-2 border-voyager-orange pl-4" },
-                React.createElement('h4', { className: "text-xl text-voyager-tan font-bold" }, "Project Stargate"),
-                React.createElement('p', { className: "text-sm text-voyager-blue" }, "Stardate: 2021.Q1"),
-                React.createElement('p', { className: "mt-2" }, "Engineered a cross-platform component library for the Galactic Federation's internal toolkit. Ensured WCAG 2.1 AA accessibility compliance and created comprehensive documentation, accelerating development cycles for dozens of engineering teams.")
+                React.createElement('h4', { className: "text-xl text-voyager-tan font-bold" },
+                    React.createElement('a', {
+                        href: "https://github.com/Scott-oustudent/MathTool",
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                        style: { color: 'inherit', textDecoration: 'none' }
+                    }, "MathTool")
+                ),
+                React.createElement('p', { className: "text-sm text-voyager-blue" }, "Stardate: 2025.Q1"),
+                React.createElement('p', { className: "mt-2" }, "During my initial training cycle, while mastering the starship's core Python programming language, I was tasked with a priority mission. The objective was to engineer and deploy a tactical mathematics simulator designed to sharpen a cadet's computational reflexes.The simulation would engage the user by transmitting a series of rapid-response calculations based on four core operational parameters: multiplication, division, addition, and subtraction. Upon completion of the training sequence, the program would analyze the mission data and display a final performance score, logging the cadet's accuracy and efficiency for their official flight record.")
             )
         )
     )
@@ -118,7 +135,6 @@ const MissionUpdateContent = () => (
         )
     )
 );
-
 
 export const SECTIONS: Record<SectionName, Section> = {
     about: {
