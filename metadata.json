@@ -1,0 +1,5 @@
+{
+  "name": "Starship Portfolio",
+  "description": "An interactive, gamified portfolio web application designed in the style of galactic starfleet tech. Users must complete IT-themed quests to unlock different sections, such as projects, about, and contact information, featuring dynamic UI and AI interaction.",
+  "requestFramePermissions": []
+}
