@@ -1,5 +1,3 @@
-// owner-scotthwcouk.github.io-master/App.tsx (Corrected Logic)
-
 import React, { useState, useRef } from 'react';
 import { Header } from './components/Header';
 import { UnlockedSection } from './components/UnlockedSection';
@@ -31,69 +29,33 @@ const NavButton: React.FC<{label: string, onClick: () => void, isActive: boolean
 const App: React.FC = () => {
   const [sections] = useState<Record<SectionName, Section>>(SECTIONS);
   const [currentView, setCurrentView] = useState<SectionName | null>(null);
-  const [soundEnabled, setSoundEnabled] = useState(false);
-  const audioRef = useRef<HTMLAudioElement>(null);
 
-  const handleEnableSound = () => {
-    // Now, audioRef.current will not be null
-    if (audioRef.current) {
-      audioRef.current.play().catch(error => {
-        console.error("Audio playback failed:", error);
-      });
-      // This will trigger the re-render to the main application view
-      setSoundEnabled(true);
-    }
-  };
-  
-  // The audio element is now included in the initial render, allowing the ref to connect.
-  // We manage showing the app vs. the splash screen with the soundEnabled state.
   return (
-    <>
-      <audio ref={audioRef} src="/Media/Bridge Ambient Sound.mp3" loop />
-      
-      {!soundEnabled ? (
-        // Splash Screen
-        <div className="bg-voyager-bg min-h-screen flex items-center justify-center p-4">
-          <div className="text-center">
-             <h1 className="text-3xl font-orbitron text-voyager-blue mb-4">Starship Portfolio OS</h1>
-             <p className="text-voyager-tan mb-8">For the best experience, enable ambient bridge sounds.</p>
-              <button
-                onClick={handleEnableSound}
-                className="bg-voyager-blue text-black font-orbitron text-2xl px-8 py-4 hover:bg-voyager-orange transition-colors"
-              >
-                Engage
-              </button>
-          </div>
+    <div className="bg-voyager-bg min-h-screen text-voyager-tan font-mono flex flex-col p-2 sm:p-4">
+      <Header />
+      <main className="flex-grow flex flex-col md:flex-row gap-4 mt-4 overflow-hidden">
+        <nav className="w-full md:w-64 flex-shrink-0 flex md:flex-col gap-4">
+          {Object.values(sections).map(section => (
+              <NavButton
+                  key={section.id}
+                  label={section.title}
+                  onClick={() => setCurrentView(section.id)}
+                  isActive={currentView === section.id}
+              />
+          ))}
+        </nav>
+        <div className="flex-grow w-full animate-fadeIn">
+          {currentView && sections[currentView] ? (
+            <UnlockedSection
+              section={sections[currentView]}
+              onClose={() => setCurrentView(null)}
+            />
+          ) : (
+            <HomeScreen />
+          )}
         </div>
-      ) : (
-        // Main App View
-        <div className="bg-voyager-bg min-h-screen text-voyager-tan font-mono flex flex-col p-2 sm:p-4">
-          <Header />
-          <main className="flex-grow flex flex-col md:flex-row gap-4 mt-4 overflow-hidden">
-            <nav className="w-full md:w-64 flex-shrink-0 flex md:flex-col gap-4">
-              {Object.values(sections).map(section => (
-                  <NavButton
-                      key={section.id}
-                      label={section.title}
-                      onClick={() => setCurrentView(section.id)}
-                      isActive={currentView === section.id}
-                  />
-              ))}
-            </nav>
-            <div className="flex-grow w-full animate-fadeIn">
-              {currentView && sections[currentView] ? (
-                <UnlockedSection
-                  section={sections[currentView]}
-                  onClose={() => setCurrentView(null)}
-                />
-              ) : (
-                <HomeScreen />
-              )}
-            </div>
-          </main>
-        </div>
-      )}
-    </>
+      </main>
+    </div>
   );
 };
 
