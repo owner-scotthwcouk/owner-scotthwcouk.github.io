@@ -30,7 +30,20 @@ const ProjectsContent = () => (
             "MISSION LOGS: PROJECT ARCHIVES"
         ),
         React.createElement('div', { className: "space-y-6" },
-            // Block 1: Code Institute
+            // Block 1: This Portfolio
+            React.createElement('div', { className: "border-l-2 border-voyager-orange pl-4" },
+                React.createElement('h4', { className: "text-xl text-voyager-tan font-bold" },
+                    React.createElement('a', {
+                        href: "https://github.com/owner-scotthwcouk/owner-scotthwcouk.github.io",
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                        style: { color: 'inherit', textDecoration: 'none' }
+                    }, "Starship Portfolio Interface")
+                ),
+                React.createElement('p', { className: "text-sm text-voyager-blue" }, "Stardate: 2025.Q3"),
+                React.createElement('p', { className: "mt-2" }, "After extensive deep-space reconnaissance, Command issued a priority directive: establish a new communications hub. This project, designated 'The Portfolio Interface', required navigating uncharted sectors of React and TypeScript. The mission faced numerous temporal anomalies and subspace distortions, demanding countless system diagnostics and recalibrations. After a long and arduous voyage through the debugging nebula, the interface is now fully operational, providing a stable channel for all incoming transmissions.")
+            ),
+            // Block 2: Code Institute
             React.createElement('div', { className: "border-l-2 border-voyager-orange pl-4" },
                 React.createElement('h4', { className: "text-xl text-voyager-tan font-bold" },
                     React.createElement('a', {
@@ -54,7 +67,7 @@ const ProjectsContent = () => (
                 React.createElement('p', { className: "mt-2" }, "ID Selectors: Targeted unique, mission-critical components for specific styling. Each ID must be a unique identifier."),
                 React.createElement('p', { className: "mt-2" }, "Class Selectors: Applied standard visual protocols to multiple components, allowing for efficient and reusable styling across the fleet of elements.")
             ),
-            // Block 2: Cheat Sheets
+            // Block 3: Cheat Sheets
             React.createElement('div', { className: "border-l-2 border-voyager-orange pl-4" },
                 React.createElement('h4', { className: "text-xl text-voyager-tan font-bold" },
                     React.createElement('a', {
@@ -67,7 +80,7 @@ const ProjectsContent = () => (
                 React.createElement('p', { className: "text-sm text-voyager-blue" }, "Stardate: 2025.Q1"),
                 React.createElement('p', { className: "mt-2" }, "Recognizing a tactical need for immediate access to critical information, I commissioned the establishment of the Cheatsheet Databank.This centralized repository was engineered to serve as a rapid-access archive for all crew members. It contains vital operational schematics and command syntax guides for a wide array of programming dialects and communication protocols, including Markdown. The primary objective is to ensure any operator can swiftly reference complex command structures, streamlining mission execution and enhancing operational efficiency across the fleet.")
             ),
-            // Block 3: MathTool
+            // Block 4: MathTool
             React.createElement('div', { className: "border-l-2 border-voyager-orange pl-4" },
                 React.createElement('h4', { className: "text-xl text-voyager-tan font-bold" },
                     React.createElement('a', {
