@@ -12,6 +12,11 @@ const AboutContent = () => (
             React.createElement(UserIcon, { className: "w-6 h-6 mr-2" }),
             "CAPTAIN'S LOG: SCOTT HARVEY-WHITTLE"
         ),
+        React.createElement('img', { 
+            src: "/Media/1722689909-bpfull.webp",
+            alt: "Scott Harvey-Whittle", 
+            className: "w-32 h-32 rounded-full mx-auto mb-4 object-cover"
+        }),
         React.createElement('p', { className: "mb-4" }, "My designation is Scott Harvey-Whittle, currently assigned to The Open University. My primary directive is the completion of a BSc (Honours) in Computing and IT."),
         React.createElement('p', { className: "mb-4" }, "Inspired by the voyages of the U.S.S. Voyager, my personal mission is one of perpetual learning and exploration. I am committed to navigating the vast expanse of technology and bringing innovative projects from the conceptual stage into the public domain."),
         React.createElement('p', null, "The final frontier is knowledge, and my journey is to continuously push its boundaries.")
