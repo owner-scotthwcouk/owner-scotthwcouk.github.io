@@ -3,12 +3,12 @@ import { defineConfig } from 'vite';
 
 export default defineConfig(({ mode }) => {
     return {
-      base: '/', // Add this line
-      publicDir: 'public',
-      resolve: {
-        alias: {
-          '@': path.resolve(__dirname, '.'),
-        }
+    base: '/owner-scotthwcouk.github.io/',  
+    publicDir: 'public',
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, '.'),
       }
-    };
+    }
+  };
 });
