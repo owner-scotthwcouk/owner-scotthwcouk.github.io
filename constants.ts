@@ -107,7 +107,7 @@ const ContactContent = () => (
         React.createElement('div', { className: "space-y-4" },
             React.createElement('a', { href: "mailto:scott@scott-hw.online", className: "flex items-center group" },
                 React.createElement(MailIcon, { className: "w-6 h-6 mr-3 text-voyager-blue group-hover:text-voyager-orange transition-colors" }),
-                React.createElement('span', { className: "text-voyager-tan group-hover:underline" }, "Scott@scotthw.co.uk")
+                React.createElement('span', { className: "text-voyager-tan group-hover:underline" }, "scott@scott-hw.online")
             ),
             React.createElement('a', { href: "https://github.com/scott-oustudent", target: "_blank", rel: "noopener noreferrer", className: "flex items-center group" },
                 React.createElement(GithubIcon, { className: "w-6 h-6 mr-3 text-voyager-blue group-hover:text-voyager-orange transition-colors" }),
