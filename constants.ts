@@ -105,7 +105,7 @@ const ContactContent = () => (
         ),
         React.createElement('p', { className: "mb-6" }, "To establish a secure comms link for inquiries, collaborations, or distress signals, please use the following encrypted channels. Standard galactic protocols apply."),
         React.createElement('div', { className: "space-y-4" },
-            React.createElement('a', { href: "mailto:Scott@scotthw.co.uk", className: "flex items-center group" },
+            React.createElement('a', { href: "mailto:scott@scott-hw.online", className: "flex items-center group" },
                 React.createElement(MailIcon, { className: "w-6 h-6 mr-3 text-voyager-blue group-hover:text-voyager-orange transition-colors" }),
                 React.createElement('span', { className: "text-voyager-tan group-hover:underline" }, "Scott@scotthw.co.uk")
             ),
