@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShipIcon, WifiIcon } from './components/Icons';
+import { ShipIcon, WifiIcon } from './Icons';
 
 export const Header: React.FC = () => {
   const [time, setTime] = React.useState(new Date());
