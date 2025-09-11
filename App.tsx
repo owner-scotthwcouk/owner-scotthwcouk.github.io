@@ -3,6 +3,8 @@ import { Header } from './components/Header';
 import { UnlockedSection } from './components/UnlockedSection';
 import { SECTIONS } from './constants';
 import { SectionName, Section } from './types';
+import { BackgroundEffects } from './components/BackgroundEffects';
+
 
 const HomeScreen: React.FC = () => (
   <div className="flex items-center justify-center h-full bg-black/50 border border-voyager-blue/20 p-4">

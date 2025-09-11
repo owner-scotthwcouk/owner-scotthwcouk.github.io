@@ -10,41 +10,48 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              'orbitron': ['Orbitron', 'sans-serif'],
-              'mono': ['Roboto Mono', 'monospace'],
-            },
-            colors: {
-              'voyager-bg': '#000000',
-              'voyager-tan': '#FFCC99',
-              'voyager-orange': '#FF9900',
-              'voyager-blue': '#99CCFF',
-              'voyager-purple': '#CC99FF',
-            },
-            keyframes: {
-              flicker: {
-                '0%, 100%': { opacity: 1 },
-                '50%': { opacity: 0.7 },
-              },
-              fadeIn: {
-                '0%': { opacity: 0, transform: 'translateY(10px)' },
-                '100%': { opacity: 1, transform: 'translateY(0)' },
-              }
-            },
-            animation: {
-              flicker: 'flicker 1.5s infinite',
-              fadeIn: 'fadeIn 0.5s ease-out forwards',
-            },
-            boxShadow: {
-              'glow-accent': '0 0 5px #99CCFF, 0 0 10px #99CCFF',
-            }
-          },
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          'orbitron': ['Orbitron', 'sans-serif'],
+          'mono': ['Roboto Mono', 'monospace'],
         },
-      }
-    </script>
+        colors: {
+          'voyager-bg': '#000000',
+          'voyager-tan': '#FFCC99',
+          'voyager-orange': '#FF9900',
+          'voyager-blue': '#99CCFF',
+          'voyager-purple': '#CC99FF',
+        },
+        keyframes: {
+          flicker: {
+            '0%, 100%': { opacity: 1 },
+            '50%': { opacity: 0.7 },
+          },
+          fadeIn: {
+            '0%': { opacity: 0, transform: 'translateY(10px)' },
+            '100%': { opacity: 1, transform: 'translateY(0)' },
+          },
+          // ADD THIS NEW KEYFRAME
+          softGlow: {
+            '0%, 100%': { boxShadow: '0 0 20px 0px rgba(153, 204, 255, 0.2)', opacity: 0.5 },
+            '50%': { boxShadow: '0 0 35px 8px rgba(153, 204, 255, 0.4)', opacity: 1 },
+          }
+        },
+        animation: {
+          flicker: 'flicker 1.5s infinite',
+          fadeIn: 'fadeIn 0.5s ease-out forwards',
+          // ADD THIS NEW ANIMATION
+          softGlow: 'softGlow 5s ease-in-out infinite',
+        },
+        boxShadow: {
+          'glow-accent': '0 0 5px #99CCFF, 0 0 10px #99CCFF',
+        }
+      },
+    },
+  }
+</script>
   <script type="importmap">
 {
   "imports": {
