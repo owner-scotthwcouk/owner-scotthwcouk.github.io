@@ -32,31 +32,20 @@ const App: React.FC = () => {
   const [isMuted, setIsMuted] = useState(true);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  useEffect(() => {
-    const audioEl = audioRef.current;
-    if (audioEl) {
-        audioEl.volume = 0.1;
-        if (!isMuted) {
-            audioEl.play().catch(error => {
-                console.log("Audio autoplay was prevented by the browser.");
-            });
-        } else {
-            audioEl.pause();
-        }
-    }
-  }, [isMuted]);
-
   const toggleMute = () => {
-      // Create a user-initiated action
+      // We need to interact with the audio element after a user action (like a click)
+      // for browsers to allow it to play.
       const audioEl = audioRef.current;
-      if (audioEl) {
-        if (isMuted) {
-            audioEl.play().catch(e => console.error("Play failed:", e));
-        } else {
-            audioEl.pause();
-        }
+      if (!audioEl) return;
+
+      if (audioEl.paused) {
+          audioEl.volume = 0.1;
+          audioEl.play().catch(e => console.error("Audio play failed:", e));
+          setIsMuted(false);
+      } else {
+          audioEl.pause();
+          setIsMuted(true);
       }
-      setIsMuted(!isMuted);
   };
 
   return (

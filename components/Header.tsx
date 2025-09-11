@@ -19,7 +19,7 @@ export const Header: React.FC<HeaderProps> = ({ isMuted, toggleMute }) => {
   };
 
   return (
-    <header className="bg-black border-2 border-voyager-purple p-3 flex justify-between items-center font-orbitron text-voyager-tan">
+    <header className="bg-black border-2 border-voyager-purple p-3 flex justify-between items-center font-orbitron text-voyager-tan flex-wrap gap-2">
       <div className="flex items-center text-base md:text-xl">
         <ShipIcon className="w-6 h-6 mr-3 animate-flicker text-voyager-blue" />
         <h1>
