@@ -33,8 +33,9 @@ export const Header: React.FC<HeaderProps> = ({ isMuted, toggleMute }) => {
       </div>
 
       <div className="flex items-center text-sm">
-        <button onClick={toggleMute} className="mr-4 text-voyager-blue hover:text-voyager-orange transition-colors">
+        <button onClick={toggleMute} className="flex items-center mr-4 text-voyager-blue hover:text-voyager-orange transition-colors">
             {isMuted ? <SpeakerXMarkIcon className="w-6 h-6" /> : <SpeakerWaveIcon className="w-6 h-6" />}
+            {isMuted && <span className="ml-2 hidden sm:inline">Unmute to enable sound</span>}
         </button>
         <span className="mr-2 text-voyager-blue">UPLINK: STABLE</span>
         <WifiIcon className="w-5 h-5 text-voyager-blue" />
