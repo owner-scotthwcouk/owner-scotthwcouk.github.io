@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShipIcon, WifiIcon } from './Icons';
+import { ShipIcon, WifiIcon } from './components/Icons';
 
 export const Header: React.FC = () => {
   const [time, setTime] = React.useState(new Date());
@@ -15,9 +15,12 @@ export const Header: React.FC = () => {
 
   return (
     <header className="bg-black border-2 border-voyager-purple p-3 flex justify-between items-center font-orbitron text-voyager-tan">
-      <div className="flex items-center text-lg md:text-xl">
+      <div className="flex items-center text-base md:text-xl">
         <ShipIcon className="w-6 h-6 mr-3 animate-flicker text-voyager-blue" />
-        <h1>SCOTT HARVEY-WHITTLE PORTFOLIO INTERFACE</h1>
+        <h1>
+            <span className="hidden md:inline">SCOTT HARVEY-WHITTLE </span>
+            <span>PORTFOLIO INTERFACE</span>
+        </h1>
       </div>
       
       <div className="hidden md:flex items-center text-sm gap-4">
