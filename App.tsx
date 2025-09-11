@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Header } from './components/Header';
 import { UnlockedSection } from './components/UnlockedSection';
 import { SECTIONS } from './constants';
@@ -29,10 +29,40 @@ const NavButton: React.FC<{label: string, onClick: () => void, isActive: boolean
 const App: React.FC = () => {
   const [sections] = useState<Record<SectionName, Section>>(SECTIONS);
   const [currentView, setCurrentView] = useState<SectionName | null>(null);
+  const [isMuted, setIsMuted] = useState(true);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    const audioEl = audioRef.current;
+    if (audioEl) {
+        audioEl.volume = 0.1;
+        if (!isMuted) {
+            audioEl.play().catch(error => {
+                console.log("Audio autoplay was prevented by the browser.");
+            });
+        } else {
+            audioEl.pause();
+        }
+    }
+  }, [isMuted]);
+
+  const toggleMute = () => {
+      // Create a user-initiated action
+      const audioEl = audioRef.current;
+      if (audioEl) {
+        if (isMuted) {
+            audioEl.play().catch(e => console.error("Play failed:", e));
+        } else {
+            audioEl.pause();
+        }
+      }
+      setIsMuted(!isMuted);
+  };
 
   return (
     <div className="bg-voyager-bg min-h-screen text-voyager-tan font-mono flex flex-col p-2 sm:p-4">
-      <Header />
+      <audio ref={audioRef} src="/Media/ambient.mp3" loop />
+      <Header isMuted={isMuted} toggleMute={toggleMute} />
       <main className="flex-grow flex flex-col md:flex-row gap-4 mt-4 overflow-hidden">
         <nav className="w-full md:w-64 flex-shrink-0 flex flex-col gap-2 md:gap-4">
           {Object.values(sections).map(section => (

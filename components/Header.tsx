@@ -1,7 +1,12 @@
 import React from 'react';
-import { ShipIcon, WifiIcon } from '@/components/Icons';
+import { ShipIcon, WifiIcon, SpeakerWaveIcon, SpeakerXMarkIcon } from '@/components/Icons';
 
-export const Header: React.FC = () => {
+interface HeaderProps {
+    isMuted: boolean;
+    toggleMute: () => void;
+}
+
+export const Header: React.FC<HeaderProps> = ({ isMuted, toggleMute }) => {
   const [time, setTime] = React.useState(new Date());
 
   React.useEffect(() => {
@@ -28,6 +33,9 @@ export const Header: React.FC = () => {
       </div>
 
       <div className="flex items-center text-sm">
+        <button onClick={toggleMute} className="mr-4 text-voyager-blue hover:text-voyager-orange transition-colors">
+            {isMuted ? <SpeakerXMarkIcon className="w-6 h-6" /> : <SpeakerWaveIcon className="w-6 h-6" />}
+        </button>
         <span className="mr-2 text-voyager-blue">UPLINK: STABLE</span>
         <WifiIcon className="w-5 h-5 text-voyager-blue" />
       </div>
