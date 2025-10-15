@@ -77,7 +77,7 @@ export const CmiInterface: React.FC<CmiInterfaceProps> = ({ onLogout }) => {
         // Update the item in the local state array
         setCurrentData(currentData.map(item => (item.id === editItem.id ? editItem : item)));
         setEditItem(null);
-        alert("SIMULATION: Changes applied locally. Remember to update constants.ts/data.json to publish.");
+        alert("SIMULATION: Changes applied locally. Remember to update data.json to publish.");
     };
 
     const handleSaveAll = () => {
@@ -184,7 +184,7 @@ export const CmiInterface: React.FC<CmiInterfaceProps> = ({ onLogout }) => {
             </div>
 
             <div className="flex justify-between items-center mb-4">
-                <h3 className="text-xl text-voyager-blue font-orbitron uppercase">{activeTab.toUpperCase()} Manager</h3>
+                <h3 className="text-xl text-voyager-blue font-orbitron uppercase">{activeTab.toUpperCase()} MANAGER</h3>
                 <div className="flex gap-3">
                     <button onClick={handleAdd} className="bg-green-700 hover:bg-green-600 text-voyager-tan font-bold py-2 px-4 transition-colors font-orbitron text-sm">
                         + ADD NEW
