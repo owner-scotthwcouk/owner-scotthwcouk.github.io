@@ -7,14 +7,22 @@ import { GithubIcon, LinkedinIcon, MailIcon, CodeIcon, UserIcon, PhoneIcon, Shie
 // to securely exchange the code for an access token. This client-side function initiates the process only.
 const handleGitHubLogin = () => {
     // 🛑 CRITICAL: REPLACE THIS PLACEHOLDER WITH YOUR ACTUAL GITHUB OAUTH CLIENT ID
-    const GITHUB_CLIENT_ID = 'Ov23liqI3lpJJuVEcIux'; 
-    const REDIRECT_URI = window.location.origin + "/owner-scotthwcouk.github.io-master/"; // Must match the value in package.json/homepage
+    const GITHUB_CLIENT_ID = 'YOUR_GITHUB_OAUTH_CLIENT_ID'; 
+    // FIXED: Appended '/callback' to match your GitHub app settings.
+    const REDIRECT_URI = window.location.origin + "/owner-scotthwcouk.github.io-master/callback"; 
     const SCOPE = 'read:user'; // Minimal scope to read public profile
 
     if (GITHUB_CLIENT_ID.includes('YOUR')) {
         alert("ACCESS DENIED: GitHub OAuth Client ID is not configured. Please replace 'YOUR_GITHUB_OAUTH_CLIENT_ID' in constants.ts.");
         return;
     }
+    
+    // Step 1: Redirect user to GitHub for authorization
+    const authUrl = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${SCOPE}`;
+    window.location.href = authUrl;
+
+    alert("Initiating GitHub Authorization Sequence. You will be redirected to the Federation GitHub Console.");
+};
     
     // Step 1: Redirect user to GitHub for authorization
     const authUrl = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${SCOPE}`;
