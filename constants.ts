@@ -2,6 +2,28 @@ import React from 'react';
 import { Section, SectionName } from './types';
 import { GithubIcon, LinkedinIcon, MailIcon, CodeIcon, UserIcon, PhoneIcon, ShieldIcon } from './components/Icons';
 
+// --- SECRET ADMIN LOGIN HANDLER ---
+const handleSecretLogin = () => {
+    const USERNAME = 'scott-hw-ou';
+    const PASSWORD = 'Brookhouse01!';
+
+    const inputUsername = window.prompt("Starfleet Admin Login\nEnter Username:");
+    if (inputUsername === null) return; // User cancelled
+
+    const inputPassword = window.prompt("Starfleet Admin Login\nEnter Password:");
+    if (inputPassword === null) return; // User cancelled
+
+    if (inputUsername === USERNAME && inputPassword === PASSWORD) {
+        // Successful login simulation
+        alert("ACCESS GRANTED. Welcome, Commander. Initiating Content Management Interface (CMI).");
+        // In a full application, you would add logic here to navigate to the new CMI view.
+    } else {
+        // Failed login
+        alert("ACCESS DENIAL: Credentials not recognized. Unauthorized personnel detected.");
+    }
+};
+// ----------------------------------
+
 // FIX: The following components are defined using React.createElement to avoid JSX.
 // This is necessary because this file has a .ts extension, which typically doesn't
 // process JSX syntax. The standard practice would be to rename this file to .tsx.
@@ -292,6 +314,15 @@ const PoliciesContent = () => (
                 React.createElement('h5', { className: 'text-lg text-voyager-orange mt-4' }, "7. Governing Law"),
                 React.createElement('p', null, "These Terms and your use of the Service are governed by and construed in accordance with the laws of England and Wales, without regard to its conflict of law principles. You agree to submit to the exclusive jurisdiction of the courts located in England and Wales."),
             )
+        ),
+        
+        // --- NEW ADMIN LOGIN BUTTON ---
+        React.createElement('div', {className: "mt-12 pt-4 border-t-2 border-voyager-orange/50 flex flex-col items-start"},
+            React.createElement('p', {className: "mb-3 text-voyager-tan/70 font-mono"}, "--- CLASSIFIED STARFLEET OPS ---"),
+            React.createElement('button', {
+                onClick: handleSecretLogin,
+                className: "bg-voyager-purple hover:bg-voyager-orange text-black font-bold py-2 px-4 transition-colors font-orbitron text-sm shadow-glow-accent",
+            }, "ADMIN ACCESS | CMI Login")
         )
     )
 );
