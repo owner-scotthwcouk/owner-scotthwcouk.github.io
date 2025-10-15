@@ -5,7 +5,8 @@ interface CmiInterfaceProps {
 }
 
 // --- SIMULATED DATA STORE ---
-// NOTE: This data is initialized from the content found in constants.ts
+// NOTE: This initial data structure simulates the content loaded from data.json,
+// allowing the CMI to demonstrate editing functionality locally.
 const initialProjectLogs = [
     { id: 1, title: "Starship Portfolio Interface", stardate: "2025.Q3", summary: "Required navigating uncharted sectors of React and TypeScript..." },
     { id: 2, title: "Code Institute 5 Day Challenge", stardate: "2025.Q2", summary: "A 5-day rapid deployment exercise to construct a functional web interface..." },
@@ -38,10 +39,11 @@ const ContentSection: React.FC<{ title: string, isActive: boolean, onClick: () =
 
 export const CmiInterface: React.FC<CmiInterfaceProps> = ({ onLogout }) => {
     const [activeTab, setActiveTab] = useState<'logs' | 'updates' | 'protocols'>('logs');
+    // State management for CRUD simulation:
     const [projectLogs, setProjectLogs] = useState(initialProjectLogs);
     const [missionUpdates, setMissionUpdates] = useState(initialMissionUpdates);
     const [protocols, setProtocols] = useState(initialProtocols);
-    const [editItem, setEditItem] = useState<any>(null); // Stores item being edited
+    const [editItem, setEditItem] = useState<any>(null); // Stores item currently being edited
 
     const currentData = activeTab === 'logs' ? projectLogs : activeTab === 'updates' ? missionUpdates : protocols;
     const setCurrentData = activeTab === 'logs' ? setProjectLogs : activeTab === 'updates' ? setMissionUpdates : setProtocols;
@@ -50,6 +52,7 @@ export const CmiInterface: React.FC<CmiInterfaceProps> = ({ onLogout }) => {
 
     const handleAdd = () => {
         let newItem: any;
+        // Logic for creating a new blank entry based on the active tab
         if (activeTab === 'logs') {
             newItem = { id: Date.now(), title: 'NEW MISSION LOG', stardate: '2025.Q4', summary: 'New project summary...' };
         } else if (activeTab === 'updates') {
@@ -62,7 +65,7 @@ export const CmiInterface: React.FC<CmiInterfaceProps> = ({ onLogout }) => {
     };
 
     const handleDelete = (id: number) => {
-        if (window.confirm(`Confirm deletion of item ID ${id}. THIS IS NOT REVERSIBLE IN THIS SESSION.`)) {
+        if (window.confirm(`Confirm deletion of item ID ${id}. THIS ACTION IS LOCAL ONLY.`)) {
             setCurrentData(currentData.filter(item => item.id !== id));
             setEditItem(null);
             alert("SIMULATION: Item deleted locally.");
@@ -71,13 +74,14 @@ export const CmiInterface: React.FC<CmiInterfaceProps> = ({ onLogout }) => {
 
     const handleSaveEdit = (e: React.FormEvent) => {
         e.preventDefault();
+        // Update the item in the local state array
         setCurrentData(currentData.map(item => (item.id === editItem.id ? editItem : item)));
         setEditItem(null);
-        alert("SIMULATION: Changes applied locally. Remember to update constants.ts to publish.");
+        alert("SIMULATION: Changes applied locally. Remember to update constants.ts/data.json to publish.");
     };
 
     const handleSaveAll = () => {
-        alert("SIMULATION: All changes saved locally in this session only. You must manually edit and commit changes to the source files (constants.ts) to publish to the live site.");
+        alert("SIMULATION: All changes saved locally in this session only. You must manually edit and commit changes to the source files (data.json) to publish to the live site.");
     };
     
     // --- RENDER FUNCTIONS ---
@@ -96,7 +100,7 @@ export const CmiInterface: React.FC<CmiInterfaceProps> = ({ onLogout }) => {
                 {currentData.map((item: any) => (
                     <tr key={item.id} className="border-b border-voyager-blue/50 hover:bg-black/30 transition-colors">
                         <td className="py-2 px-4">{item.id}</td>
-                        <td className="py-2 px-4">{item.title || item.directive || item.title}</td>
+                        <td className="py-2 px-4">{item.title || item.directive}</td>
                         <td className="py-2 px-4">{item.stardate || item.type}</td>
                         <td className="py-2 px-4 flex gap-2">
                             <button onClick={() => setEditItem(item)} className="text-voyager-blue hover:text-voyager-orange text-sm">Update</button>
@@ -111,6 +115,7 @@ export const CmiInterface: React.FC<CmiInterfaceProps> = ({ onLogout }) => {
     const renderEditor = () => {
         if (!editItem) return null;
         
+        // Define fields based on the active tab
         const fields = activeTab === 'logs' ? [
             { key: 'title', label: 'Mission Title' },
             { key: 'stardate', label: 'Stardate' },
