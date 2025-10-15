@@ -156,19 +156,138 @@ const MissionUpdateContent = () => (
 
 // NEW COMPONENT FOR POLICIES
 const PoliciesContent = () => (
-    React.createElement('div', null,
+    React.createElement('div', { className: "space-y-8" },
         React.createElement('h3', { className: "text-2xl font-orbitron text-voyager-orange mb-4 flex items-center" },
             React.createElement(ShieldIcon, { className: "w-6 h-6 mr-2" }),
             "STARFLEET PROTOCOLS: REGULATIONS & GENERAL ORDERS"
         ),
-        React.createElement('div', { className: "space-y-4" },
-            React.createElement('p', null, "Access to this regulatory data stream is provisional. All Starfleet personnel are advised that the full set of operational guidelines, including Privacy Protocols and Mission Continuity Directives, is pending transmission from Command."),
-            React.createElement('p', null, "Please prepare for data packet reception. Until then, standard Federation security and ethical protocols remain in effect."),
-            // Placeholder for user's future policies
-            React.createElement('div', { className: "mt-6 p-4 border border-voyager-blue/50 bg-black/30" },
-                React.createElement('h4', { className: "text-xl text-voyager-blue font-bold mb-2" }, "CURRENT DIRECTIVE LOG: AWAITING INPUT"),
-                React.createElement('p', { className: "text-voyager-tan/70" }, "The final policy content will be uploaded and integrated once the mission specialist provides the complete official documents.")
+        
+        // --- 1. DATA PROTECTION DIRECTIVE (PRIVACY POLICY) ---
+        React.createElement('div', { className: "border-l-2 border-voyager-blue pl-4" },
+            React.createElement('h4', { className: "text-xl text-voyager-tan font-bold mb-2" }, "DATA PROTECTION DIRECTIVE: PRIVACY PROTOCOLS"),
+            
+            // --- INSERT PRIVACY POLICY CONTENT HERE ---
+            React.createElement('div', { className: "mt-4 p-4 border border-voyager-blue/50 bg-black/30 text-voyager-tan" },
+                React.createElement('p', null, "Privacy Policy\n \nEffective Date: 15 October 2025\n \n This Privacy Policy explains how SHW (scott-hw.online) ('we,' 'us,' or 'our') collects, uses, and protects your personal data when you use our services or website. We are committed to complying with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018. \n \nPlease Note: This is an example policy. You must consult with a legal professional to draft a policy that accurately reflects your data processing activities. \n \n1. Who We Are 
+
+SHW is the data controller responsible for your personal data. 
+
+Company Name: SHW 
+
+Registered Address: 77 Brookhouse Avenue, Eccles, Greater Manchester, M30 7PB 
+
+Contact Email: scott@scott-hw.online 
+
+2. The Data We Collect About You 
+
+We may collect, use, store, and transfer different kinds of personal data about you, which we have grouped together as follows: 
+
+Identity Data: Includes first name, last name, username, marital status, title, date of birth, and gender. 
+
+Contact Data: Includes billing address, delivery address, email address, and telephone numbers. 
+
+Technical Data: Includes internet protocol (IP) address, browser type and version, time zone setting and location, operating system and platform, and other technology on the devices you use to access this website. 
+
+Usage Data: Includes information about how you use our website, products, and services. 
+
+Marketing and Communications Data: Includes your preferences in receiving marketing from us and your communication preferences. 
+
+3. Lawful Basis for Processing (UK GDPR) 
+
+We will only use your personal data when the law allows us to. Most commonly, we will use your personal data in the following circumstances: 
+
+Purpose of Processing 
+
+Example Data Used 
+
+Lawful Basis under UK GDPR 
+
+To register you as a new customer 
+
+Identity, Contact 
+
+Performance of a Contract 
+
+To process and deliver your order 
+
+Identity, Contact, Financial 
+
+Performance of a Contract 
+
+To manage our relationship with you 
+
+Identity, Contact, Marketing 
+
+Necessary for our Legitimate Interests (e.g., keeping our records updated) 
+
+To send you marketing communications 
+
+Contact, Marketing 
+
+Consent (where required) or Legitimate Interests (for existing customers) 
+
+To protect our business and website 
+
+Technical 
+
+Necessary for our Legitimate Interests (e.g., security and fraud prevention) 
+
+4. Data Retention 
+
+We will only retain your personal data for as long as necessary to fulfil the purposes we collected it for, including for the purposes of satisfying any legal, accounting, or reporting requirements. 
+
+5. Your Legal Rights (Data Subject Rights) 
+
+Under UK GDPR, you have the right to: 
+
+Request access to your personal data (commonly known as a "data subject access request" or DSAR). 
+
+Request correction of the personal data that we hold about you. 
+
+Request erasure of your personal data (the "right to be forgotten"). 
+
+Object to processing of your personal data where we are relying on a legitimate interest. 
+
+Request restriction of processing of your personal data. 
+
+Request the transfer of your personal data to you or a third party (data portability). 
+
+Withdraw consent at any time where we are relying on consent to process your personal data. 
+
+6. International Transfers 
+
+We may share your personal data with external third parties that are based outside the UK. Whenever we transfer your personal data out of the UK, we ensure a similar degree of protection is afforded to it by ensuring at least one of the following safeguards is implemented: 
+
+We will only transfer your personal data to countries that have been deemed to provide an adequate level of protection for personal data by the UK Government. 
+
+Where we use certain service providers, we may use specific contracts approved by the UK Government which give personal data the same protection it has in the UK. 
+
+7. How to Complain 
+
+If you have any concerns about our use of your personal data, you can make a complaint to us at scott@scott-hw.online 
+
+You also have the right to make a complaint at any time to the UK supervisory authority for data protection issues, the Information Commissioner’s Office (ICO). 
+
+ICO Address: Information Commissioner's Office, Wycliffe House, Water Lane, Wilmslow, Cheshire, SK9 5AF. 
+
+ICO Website: https://www.ico.org.uk/ 
+
+ 
+
+ ")
             )
+            // --- END PRIVACY POLICY CONTENT ---
+        ),
+
+        // --- 2. GENERAL OPERATIONAL MANDATES (TERMS OF USE) ---
+        React.createElement('div', { className: "border-l-2 border-voyager-blue pl-4 mt-8" },
+            React.createElement('h4', { className: "text-xl text-voyager-tan font-bold mb-2" }, "GENERAL OPERATIONAL MANDATES: TERMS OF USE"),
+            
+            // --- INSERT TERMS OF USE CONTENT HERE ---
+            React.createElement('div', { className: "mt-4 p-4 border border-voyager-blue/50 bg-black/30 text-voyager-tan" },
+                React.createElement('p', null, "The full content of your **Terms of Use** (from your second SharePoint document) must be manually inserted here. As above, ensure all text is enclosed in React.createElement calls to render correctly.")
+            )
+            // --- END TERMS OF USE CONTENT ---
         )
     )
 );
