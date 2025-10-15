@@ -1,14 +1,8 @@
-import path from 'path';
-import { defineConfig } from 'vite';
+// vite.config.ts
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
-export default defineConfig(({ mode }) => {
-    return {
-    base: '/owner-scotthwcouk.github.io/',  
-    publicDir: 'public',
-    resolve: {
-      alias: {
-        '@': path.resolve(__dirname, '.'),
-      }
-    }
-  };
-});
+export default defineConfig({
+  plugins: [react()],
+  base: '/', // or '/your-repo-name/' if publishing at a sub-path
+})
