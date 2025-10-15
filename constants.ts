@@ -1,208 +1,242 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Header } from './components/Header';
-import { UnlockedSection } from './components/UnlockedSection';
-import { SECTIONS } from './constants';
-import { SectionName, Section } from './types';
-import { CmiInterface } from './components/CmiInterface'; 
-import { BackgroundEffects } from './components/BackgroundEffects';
+import React from 'react';
+import { Section, SectionName } from './types';
+import { GithubIcon, LinkedinIcon, MailIcon, CodeIcon, UserIcon, PhoneIcon, ShieldIcon } from './components/Icons';
 
+// --- DATA TYPE DEFINITION (Simplified, but reflects data.json structure) ---
+interface AppData {
+    about: any;
+    projects: any[];
+    'mission-update': any;
+    contact: any;
+    protocols: any;
+}
 
-const HomeScreen: React.FC = () => (
-  <div className="flex items-center justify-center h-full bg-black/50 border border-voyager-blue/20 p-4">
-    <div className="text-center">
-      <h2 className="text-xl sm:text-2xl md:text-3xl font-orbitron text-voyager-blue">SCOTT HARVEY-WHITTLE PORTFOLIO INTERFACE</h2>
-      <p className="mt-4 text-voyager-tan">Select a database from the navigation panel to view records.</p>
-    </div>
-  </div>
+// Define interface for the section content components
+interface DataDrivenContentProps {
+    data: AppData;
+    onLoginSuccess?: () => void;
+    isLoggedIn?: boolean;
+    onLogout?: () => void;
+}
+
+// FIX: The following components are defined using React.createElement to avoid JSX.
+// They now require the 'data' prop to render.
+
+const AboutContent: React.FC<DataDrivenContentProps> = ({ data }) => (
+    React.createElement('div', null,
+        React.createElement('h3', { className: "text-2xl font-orbitron text-voyager-orange mb-4 flex items-center" },
+            React.createElement(UserIcon, { className: "w-6 h-6 mr-2" }),
+            data.about.title
+        ),
+        React.createElement('img', { 
+            src: data.about.image,
+            alt: "Scott Harvey-Whittle", 
+            className: "w-32 h-32 rounded-full mx-auto mb-4 object-cover"
+        }),
+        data.about.paragraphs.map((p: string, index: number) => (
+            React.createElement('p', { className: index < data.about.paragraphs.length - 1 ? "mb-4" : "" , key: index }, p)
+        ))
+    )
 );
 
-const NavButton: React.FC<{label: string, onClick: () => void, isActive: boolean}> = ({ label, onClick, isActive }) => (
-    <button
-        onClick={onClick}
-        className={`w-full text-right font-orbitron uppercase text-base md:text-lg px-4 py-2 transition-colors duration-200 ${
-            isActive
-                ? 'bg-voyager-orange text-black'
-                : 'bg-voyager-purple text-voyager-tan hover:bg-voyager-blue hover:text-black'
-        }`}
-    >
-        {label}
-    </button>
+const ProjectsContent: React.FC<DataDrivenContentProps> = ({ data }) => (
+    React.createElement('div', null,
+        React.createElement('h3', { className: "text-2xl font-orbitron text-voyager-orange mb-4 flex items-center" },
+            React.createElement(CodeIcon, { className: "w-6 h-6 mr-2" }),
+            "MISSION LOGS: PROJECT ARCHIVES"
+        ),
+        React.createElement('div', { className: "space-y-6" },
+            data.projects.map((project: any, index: number) => (
+                React.createElement('div', { className: "border-l-2 border-voyager-orange pl-4", key: index },
+                    React.createElement('h4', { className: "text-xl text-voyager-tan font-bold" },
+                        React.createElement('a', {
+                            href: project.url,
+                            target: "_blank",
+                            rel: "noopener noreferrer",
+                            style: { color: 'inherit', textDecoration: 'none' }
+                        }, project.title)
+                    ),
+                    React.createElement('p', { className: "text-sm text-voyager-blue" }, "Stardate: " + project.stardate),
+                    React.createElement('p', { className: "mt-2" }, project.summary),
+                    project.details && project.details.map((detail: any, dIndex: number) => (
+                        React.createElement(React.Fragment, { key: dIndex },
+                            React.createElement('h4', { className: "text-l text-voyager-tan font-bold mt-2" }, detail.heading),
+                            detail.items.map((item: string, iIndex: number) => (
+                                React.createElement('p', { className: "mt-2", key: iIndex }, item)
+                            ))
+                        )
+                    ))
+                )
+            ))
+        )
+    )
 );
 
-const App: React.FC = () => {
-  const [sections] = useState<Record<SectionName, Section>>(SECTIONS);
-  const [currentView, setCurrentView] = useState<SectionName | null>(null);
-  const [isMuted, setIsMuted] = useState(true);
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const [time, setTime] = useState(new Date());
+const ContactContent: React.FC<DataDrivenContentProps> = ({ data }) => {
+    const iconMap: { [key: string]: React.FC<React.SVGProps<SVGSVGElement>> } = { GithubIcon, LinkedinIcon, MailIcon };
 
-  // --- STATES FOR AUTH, DATA, AND LOADING ---
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isCmiMode, setIsCmiMode] = useState(false);
-  const [appData, setAppData] = useState<any>(null); 
-  const [isLoading, setIsLoading] = useState(true);
-  // ---------------------------------------------
-
-  // --- AUTHENTICATION LOGIC ---
-  const handleLocalMockLogin = () => {
-    // 🛑 WARNING: This data is visible in the browser source code.
-    const EXPECTED_USERNAME = 'scott-hw-ou';
-    const EXPECTED_PASSWORD = 'Brookhouse01!';
-
-    const inputUsername = window.prompt("Starfleet Admin Login\nEnter Username:");
-    if (inputUsername === null) return; 
-
-    if (inputUsername !== EXPECTED_USERNAME) {
-        alert("ACCESS DENIAL: Username not recognized.");
-        return;
-    }
-
-    const inputPassword = window.prompt(`Password required for ${EXPECTED_USERNAME}:`);
-    if (inputPassword === null) return; 
-
-    if (inputPassword === EXPECTED_PASSWORD) {
-        setIsLoggedIn(true);
-        alert("ACCESS GRANTED. Welcome, Commander. Initiating Content Management View.");
-        setCurrentView(null);
-    } else {
-        alert("ACCESS DENIAL: Incorrect password.");
-    }
-  };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    setIsCmiMode(false);
-    setCurrentView(null);
-  };
-  // -----------------------------
-
-  // --- DATA FETCHING LOGIC ---
-  useEffect(() => {
-    // CRITICAL FIX: Use the project's base path for correct asset loading on GitHub Pages/Netlify Subdirectory.
-    // This value is based on the "homepage" field in package.json and "base" in vite.config.ts.
-    const BASE_PATH = "/owner-scotthwcouk.github.io-master/";
-    
-    // Fetch data from the /public/content/data.json location
-    fetch(BASE_PATH + 'content/data.json')
-      .then(res => {
-        if (!res.ok) {
-          throw new Error('Network response was not ok, status: ' + res.status);
-        }
-        return res.json();
-      })
-      .then(data => {
-        setAppData(data);
-        setIsLoading(false);
-      })
-      .catch(err => {
-        console.error("Failed to load app data:", err);
-        setIsLoading(false);
-        // Fallback or error state display
-      });
-  }, []);
-  // ---------------------------
-
-  // --- STANDARD EFFECTS ---
-  React.useEffect(() => {
-    const timerId = setInterval(() => setTime(new Date()), 1000);
-    return () => clearInterval(timerId);
-  }, []);
-
-  const toggleMute = () => {
-      const audioEl = audioRef.current;
-      if (!audioEl) return;
-
-      if (audioEl.paused) {
-          audioEl.volume = 0.1;
-          audioEl.play().catch(e => console.error("Audio play failed:", e));
-          setIsMuted(false);
-      } else {
-          audioEl.pause();
-          setIsMuted(true);
-      }
-  };
-  // ------------------------
-
-  // --- DATA INJECTION & SECTION GENERATION ---
-  const getCurrentSection = () => {
-    // Check if data is not loaded OR if no view is selected
-    if (!currentView || !appData) return null;
-
-    const baseSection = sections[currentView];
-    
-    // 1. Clone and inject the fetched data prop into the component instance
-    const updatedContent = React.cloneElement(baseSection.content as React.ReactElement, { data: appData });
-
-    // 2. Handle policies section specifically for injecting login handlers
-    if (currentView === 'policies') {
-        return {
-            ...baseSection,
-            content: React.cloneElement(updatedContent, { onLoginSuccess: handleLocalMockLogin, isLoggedIn: isLoggedIn, onLogout: handleLogout }),
-        };
-    }
-
-    return { ...baseSection, content: updatedContent };
-  };
-
-  const currentSection = getCurrentSection();
-  // -------------------------------------------
-
-  // --- CONDITIONAL RENDERING ---
-  if (isLoading) {
     return (
-      <div className="bg-voyager-bg min-h-screen text-voyager-tan font-mono flex items-center justify-center">
-          <p className="text-xl font-orbitron text-voyager-blue animate-pulse">LOADING STARSHIP MANIFESTS...</p>
-      </div>
+        React.createElement('div', null,
+            React.createElement('h3', { className: "text-2xl font-orbitron text-voyager-orange mb-4 flex items-center" },
+                React.createElement(PhoneIcon, { className: "w-6 h-6 mr-2" }),
+                data.contact.title
+            ),
+            React.createElement('p', { className: "mb-6" }, data.contact.intro),
+            React.createElement('div', { className: "space-y-4" },
+                data.contact.channels.map((channel: any, index: number) => {
+                    const Icon = iconMap[channel.icon];
+                    return React.createElement('a', { 
+                        href: channel.href, 
+                        key: index,
+                        target: "_blank", 
+                        rel: "noopener noreferrer", 
+                        className: "flex items-center group" 
+                    },
+                        Icon && React.createElement(Icon, { className: "w-6 h-6 mr-3 text-voyager-blue group-hover:text-voyager-orange transition-colors" }),
+                        React.createElement('span', { className: "text-voyager-tan group-hover:underline" }, channel.value)
+                    )
+                })
+            )
+        )
     );
-  }
-
-  return (
-    <div className="bg-voyager-bg min-h-screen text-voyager-tan font-mono flex flex-col p-2 sm:p-4">
-      <audio ref={audioRef} src="/Media/ambient.mp3" loop />
-      <Header isMuted={isMuted} toggleMute={toggleMute} />
-      <BackgroundEffects />
-      <main className="flex-grow flex flex-col md:flex-row gap-4 mt-4 overflow-hidden">
-        <nav className="w-full md:w-64 flex-shrink-0 flex flex-col gap-2 md:gap-4">
-          {Object.values(sections).map(section => (
-              <NavButton
-                  key={section.id}
-                  label={section.title}
-                  onClick={() => {
-                      setCurrentView(section.id);
-                      setIsCmiMode(false);
-                  }}
-                  isActive={currentView === section.id && !isCmiMode}
-              />
-          ))}
-          
-          {/* CMI NAVIGATION BUTTON - Visible when logged in */}
-          {isLoggedIn && (
-              <NavButton
-                  label="CONTENT MANAGER"
-                  onClick={() => {
-                      setCurrentView(null);
-                      setIsCmiMode(true);
-                  }}
-                  isActive={isCmiMode}
-              />
-          )}
-        </nav>
-        <div className="flex-grow w-full animate-fadeIn">
-          {/* RENDER CMI INTERFACE */}
-          {isCmiMode && isLoggedIn ? (
-            <CmiInterface onLogout={handleLogout} />
-          ) : currentSection ? (
-            <UnlockedSection
-              section={currentSection}
-              onClose={() => setCurrentView(null)}
-            />
-          ) : (
-            <HomeScreen />
-          )}
-        </div>
-      </main>
-    </div>
-  );
 };
 
-export default App;
+const MissionUpdateContent: React.FC<DataDrivenContentProps> = ({ data }) => (
+    React.createElement('div', null,
+        React.createElement('h3', { className: "text-2xl font-orbitron text-voyager-orange mb-4 flex items-center" },
+            React.createElement(CodeIcon, { className: "w-6 h-6 mr-2" }),
+            data['mission-update'].title
+        ),
+        React.createElement('div', { className: "space-y-4" },
+            data['mission-update'].updates.map((update: any, index: number) => (
+                React.createElement('p', { key: index }, 
+                    React.createElement('strong', { className: "text-voyager-blue" }, "Stardate " + update.stardate + ": "), 
+                    update.text
+                )
+            )),
+            data['mission-update'].directives.map((directive: any, index: number) => (
+                React.createElement('div', { className: "border-l-2 border-voyager-orange pl-4", key: index },
+                    React.createElement('h4', { className: "text-xl text-voyager-tan font-bold mt-4" }, directive.heading),
+                    React.createElement('p', { className: "mt-2" }, directive.text),
+                    directive.items && React.createElement('ul', { className: "list-disc list-inside mt-2 pl-4 space-y-1" },
+                        directive.items.map((item: string, iIndex: number) => {
+                            const parts = item.split(':');
+                            return React.createElement('li', { key: iIndex }, 
+                                parts.length > 1 ? (
+                                    React.createElement('strong', null, parts[0] + ":") + parts.slice(1).join(':')
+                                ) : item
+                            )
+                        })
+                    )
+                )
+            ))
+        )
+    )
+);
+
+const PoliciesContent: React.FC<DataDrivenContentProps> = ({ data, onLoginSuccess, isLoggedIn, onLogout }) => (
+    React.createElement('div', { className: "space-y-8" },
+        React.createElement('h3', { className: "text-2xl font-orbitron text-voyager-orange mb-4 flex items-center" },
+            React.createElement(ShieldIcon, { className: "w-6 h-6 mr-2" }),
+            "STARFLEET PROTOCOLS: REGULATIONS & GENERAL ORDERS"
+        ),
+        
+        // --- 1. DATA PROTECTION DIRECTIVE (PRIVACY POLICY) ---
+        React.createElement('div', { className: "border-l-2 border-voyager-blue pl-4" },
+            React.createElement('h4', { className: "text-xl text-voyager-tan font-bold mb-2" }, data.protocols.privacy.title),
+            React.createElement('p', { className: "mb-4 text-voyager-blue/80" }, "Source: " + data.protocols.privacy.source),
+            
+            // --- PRIVACY POLICY CONTENT ---
+            React.createElement('div', { className: "mt-4 p-4 border border-voyager-blue/50 bg-black/30 text-voyager-tan space-y-3" },
+                React.createElement('p', {className: "text-sm text-voyager-orange/80"}, "Effective Date: " + data.protocols.privacy.effective_date),
+                data.protocols.privacy.sections.map((section: any, index: number) => (
+                    React.createElement(React.Fragment, { key: index },
+                        React.createElement('h5', { className: 'text-lg text-voyager-orange mt-4' }, section.heading),
+                        section.intro && React.createElement('p', null, section.intro),
+                        section.type === 'paragraph' && React.createElement('p', null, section.text),
+                        section.type === 'list' && React.createElement('ul', { className: 'list-disc list-inside ml-4 ' + (index > 0 ? 'space-y-1' : '') },
+                            section.items.map((item: string, iIndex: number) => {
+                                const parts = item.split(':');
+                                return React.createElement('li', { key: iIndex }, 
+                                    parts.length > 1 ? (
+                                        React.createElement('strong', null, parts[0] + ":") + parts.slice(1).join(':')
+                                    ) : item
+                                )
+                            })
+                        )
+                    )
+                ))
+            )
+        ),
+
+        // --- 2. GENERAL OPERATIONAL MANDATES (TERMS OF USE) ---
+        React.createElement('div', { className: "border-l-2 border-voyager-blue pl-4 mt-8" },
+            React.createElement('h4', { className: "text-xl text-voyager-tan font-bold mb-2" }, data.protocols.terms.title),
+            React.createElement('p', { className: "mb-4 text-voyager-blue/80" }, "Source: " + data.protocols.terms.source),
+            
+            // --- TERMS OF USE CONTENT ---
+            React.createElement('div', { className: "mt-4 p-4 border border-voyager-blue/50 bg-black/30 text-voyager-tan space-y-3" },
+                React.createElement('p', {className: "text-sm text-voyager-orange/80"}, "Effective Date: " + data.protocols.terms.effective_date),
+                data.protocols.terms.sections.map((section: any, index: number) => (
+                    React.createElement(React.Fragment, { key: index },
+                        React.createElement('h5', { className: 'text-lg text-voyager-orange mt-4' }, section.heading),
+                        section.intro && React.createElement('p', null, section.intro),
+                        section.type === 'paragraph' && React.createElement('p', null, section.text),
+                        section.type === 'list' && React.createElement('ul', { className: 'list-disc list-inside ml-4 space-y-1' },
+                            section.items.map((item: string, iIndex: number) => (
+                                React.createElement('li', { key: iIndex }, item)
+                            ))
+                        )
+                    )
+                ))
+            )
+        ),
+        
+        // --- NEW ADMIN LOGIN BUTTON ---
+        React.createElement('div', {className: "mt-12 pt-4 border-t-2 border-voyager-orange/50 flex flex-col items-start"},
+            React.createElement('p', {className: "mb-3 text-voyager-tan/70 font-mono"}, "--- CLASSIFIED STARFLEET OPS ---"),
+            // Conditional Button Rendering using props from App.tsx
+            isLoggedIn ? (
+                React.createElement('button', {
+                    onClick: onLogout,
+                    className: "bg-voyager-orange hover:bg-voyager-red text-black font-bold py-2 px-4 transition-colors font-orbitron text-sm shadow-glow-accent",
+                }, "LOGOUT (COMMANDER)")
+            ) : (
+                React.createElement('button', {
+                    onClick: onLoginSuccess,
+                    className: "bg-voyager-purple hover:bg-voyager-orange text-black font-bold py-2 px-4 transition-colors font-orbitron text-sm shadow-glow-accent",
+                }, "ADMIN ACCESS | CMI Login")
+            )
+        )
+    )
+);
+
+
+export const SECTIONS: Record<SectionName, Section> = {
+    about: {
+        id: 'about',
+        title: 'Personal Bio',
+        content: React.createElement(AboutContent, { data: {} }), // Placeholder for data prop
+    },
+    projects: {
+        id: 'projects',
+        title: 'Mission Logs',
+        content: React.createElement(ProjectsContent, { data: {} }), // Placeholder for data prop
+    },
+    'mission-update': {
+        id: 'mission-update',
+        title: 'Mission Update',
+        content: React.createElement(MissionUpdateContent, { data: {} }), // Placeholder for data prop
+    },
+    contact: {
+        id: 'contact',
+        title: 'Comms Channel',
+        content: React.createElement(ContactContent, { data: {} }), // Placeholder for data prop
+    },
+    // NEW SECTION ADDED
+    policies: {
+        id: 'policies',
+        title: 'Starfleet Protocols',
+        content: React.createElement(PoliciesContent, { data: {} }), // Placeholder for data prop
+    },
+};
