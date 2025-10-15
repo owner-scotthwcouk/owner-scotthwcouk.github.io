@@ -3,8 +3,49 @@ import { Header } from './components/Header';
 import { UnlockedSection } from './components/UnlockedSection';
 import { SECTIONS } from './constants';
 import { SectionName, Section } from './types';
-import { CmiInterface } from './components/CmiInterface'; 
+import { CmiInterface } from './components/CmiInterface';
 import { BackgroundEffects } from './components/BackgroundEffects';
+
+const App: React.FC = () => {
+  const [sections] = useState(SECTIONS);
+  const [currentView, setCurrentView] = useState<SectionName | null>(null);
+  const [isMuted, setIsMuted] = useState(true);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [time, setTime] = useState(new Date());
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isCmiMode, setIsCmiMode] = useState(false);
+  const [appData, setAppData] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Cross-platform asset path fix
+  const getBasePath = () => {
+    // For GitHub Pages, assume window.location.pathname may be a subdirectory
+    if (window.location.pathname.startsWith('/owner-scotthwcouk.github.io')) {
+      return '/owner-scotthwcouk.github.io/public/';
+    }
+    // For Netlify/root, just use root
+    return '/public/';
+  };
+
+  useEffect(() => {
+    const BASE_PATH = getBasePath();
+    fetch(`${BASE_PATH}content/data.json`)
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('Network response was not ok, status: ' + res.status);
+        }
+        return res.json();
+      })
+      .then(data => {
+        setAppData(data);
+        setIsLoading(false);
+      })
+      .catch(err => {
+        console.error("Failed to load app data:", err);
+        setIsLoading(false);
+      });
+  }, []);
+
 
 
 const HomeScreen: React.FC = () => (
