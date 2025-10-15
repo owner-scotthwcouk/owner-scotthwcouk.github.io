@@ -1,13 +1,14 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'path'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+// Uncomment and edit base for GitHub Pages ONLY
+// export default defineConfig({
+//   plugins: [react()],
+//   base: '/owner-scotthwcouk.github.io/'
+// });
 
 export default defineConfig({
   plugins: [react()],
-  base: '/', // or '/your-repo-name/' if publishing at a sub-path
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './')
-    }
-  }
-})
+  // For Netlify, leave base as '/'
+  base: '/',
+});
