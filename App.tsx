@@ -3,7 +3,7 @@ import { Header } from './components/Header';
 import { UnlockedSection } from './components/UnlockedSection';
 import { SECTIONS } from './constants';
 import { SectionName, Section } from './types';
-import { CmiInterface } from './components/CmiInterface'; // NEW IMPORT
+import { CmiInterface } from './components/CmiInterface'; 
 import { BackgroundEffects } from './components/BackgroundEffects';
 
 
@@ -36,7 +36,7 @@ const App: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [time, setTime] = useState(new Date());
 
-  // --- NEW STATES FOR AUTH, DATA, AND LOADING ---
+  // --- STATES FOR AUTH, DATA, AND LOADING ---
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isCmiMode, setIsCmiMode] = useState(false);
   const [appData, setAppData] = useState<any>(null); 
@@ -78,11 +78,15 @@ const App: React.FC = () => {
 
   // --- DATA FETCHING LOGIC ---
   useEffect(() => {
-    // Fetch data from the new location
-    fetch('/content/data.json')
+    // CRITICAL FIX: Use the project's base path for correct asset loading on GitHub Pages/Netlify Subdirectory.
+    // This value is based on the "homepage" field in package.json and "base" in vite.config.ts.
+    const BASE_PATH = "/owner-scotthwcouk.github.io-master/";
+    
+    // Fetch data from the /public/content/data.json location
+    fetch(BASE_PATH + 'content/data.json')
       .then(res => {
         if (!res.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error('Network response was not ok, status: ' + res.status);
         }
         return res.json();
       })
@@ -93,7 +97,7 @@ const App: React.FC = () => {
       .catch(err => {
         console.error("Failed to load app data:", err);
         setIsLoading(false);
-        alert("ERROR: Failed to load core Starship manifests (data.json). Check console for details.");
+        // Fallback or error state display
       });
   }, []);
   // ---------------------------
@@ -121,6 +125,7 @@ const App: React.FC = () => {
 
   // --- DATA INJECTION & SECTION GENERATION ---
   const getCurrentSection = () => {
+    // Check if data is not loaded OR if no view is selected
     if (!currentView || !appData) return null;
 
     const baseSection = sections[currentView];
