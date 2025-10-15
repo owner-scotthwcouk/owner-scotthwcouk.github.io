@@ -2,25 +2,25 @@ import React from 'react';
 import { Section, SectionName } from './types';
 import { GithubIcon, LinkedinIcon, MailIcon, CodeIcon, UserIcon, PhoneIcon, ShieldIcon } from './components/Icons';
 
-// --- SECRET ADMIN LOGIN HANDLER ---
-const handleSecretLogin = () => {
-    const USERNAME = 'scott-hw-ou';
-    const PASSWORD = 'Brookhouse01!';
+// --- GITHUB OAUTH SIMULATION HANDLER ---
+// NOTE: A complete, secure OAuth flow requires a server-side component (e.g., Netlify/Vercel function)
+// to securely exchange the code for an access token. This client-side function initiates the process only.
+const handleGitHubLogin = () => {
+    // 🛑 CRITICAL: REPLACE THIS PLACEHOLDER WITH YOUR ACTUAL GITHUB OAUTH CLIENT ID
+    const GITHUB_CLIENT_ID = 'Ov23liqI3lpJJuVEcIux'; 
+    const REDIRECT_URI = window.location.origin + "/owner-scotthwcouk.github.io-master/"; // Must match the value in package.json/homepage
+    const SCOPE = 'read:user'; // Minimal scope to read public profile
 
-    const inputUsername = window.prompt("Starfleet Admin Login\nEnter Username:");
-    if (inputUsername === null) return; // User cancelled
-
-    const inputPassword = window.prompt("Starfleet Admin Login\nEnter Password:");
-    if (inputPassword === null) return; // User cancelled
-
-    if (inputUsername === USERNAME && inputPassword === PASSWORD) {
-        // Successful login simulation
-        alert("ACCESS GRANTED. Welcome, Commander. Initiating Content Management Interface (CMI).");
-        // In a full application, you would add logic here to navigate to the new CMI view.
-    } else {
-        // Failed login
-        alert("ACCESS DENIAL: Credentials not recognized. Unauthorized personnel detected.");
+    if (GITHUB_CLIENT_ID.includes('YOUR')) {
+        alert("ACCESS DENIED: GitHub OAuth Client ID is not configured. Please replace 'YOUR_GITHUB_OAUTH_CLIENT_ID' in constants.ts.");
+        return;
     }
+    
+    // Step 1: Redirect user to GitHub for authorization
+    const authUrl = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${SCOPE}`;
+    window.location.href = authUrl;
+
+    alert("Initiating GitHub Authorization Sequence. You will be redirected to the Federation GitHub Console.");
 };
 // ----------------------------------
 
@@ -320,9 +320,9 @@ const PoliciesContent = () => (
         React.createElement('div', {className: "mt-12 pt-4 border-t-2 border-voyager-orange/50 flex flex-col items-start"},
             React.createElement('p', {className: "mb-3 text-voyager-tan/70 font-mono"}, "--- CLASSIFIED STARFLEET OPS ---"),
             React.createElement('button', {
-                onClick: handleSecretLogin,
+                onClick: handleGitHubLogin,
                 className: "bg-voyager-purple hover:bg-voyager-orange text-black font-bold py-2 px-4 transition-colors font-orbitron text-sm shadow-glow-accent",
-            }, "ADMIN ACCESS | CMI Login")
+            }, "ADMIN ACCESS | CMI Login (GitHub)")
         )
     )
 );
