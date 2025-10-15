@@ -2,33 +2,41 @@ import React from 'react';
 import { Section, SectionName } from './types';
 import { GithubIcon, LinkedinIcon, MailIcon, CodeIcon, UserIcon, PhoneIcon, ShieldIcon } from './components/Icons';
 
-// --- GITHUB OAUTH SIMULATION HANDLER ---
-// NOTE: A complete, secure OAuth flow requires a server-side component (e.g., Netlify/Vercel function)
-// to securely exchange the code for an access token. This client-side function initiates the process only.
-const handleGitHubLogin = () => {
-    // 🛑 CRITICAL: REPLACE THIS PLACEHOLDER WITH YOUR ACTUAL GITHUB OAUTH CLIENT ID
-    const GITHUB_CLIENT_ID = 'YOUR_GITHUB_OAUTH_CLIENT_ID'; 
-    // FIXED: Appended '/callback' to match your GitHub app settings.
-    const REDIRECT_URI = window.location.origin + "/owner-scotthwcouk.github.io-master/callback"; 
-    const SCOPE = 'read:user'; // Minimal scope to read public profile
+// --- MOCK HASH FUNCTION ---
+// NOTE: This function is for simulation only. It does not perform actual cryptographic hashing.
+// In a real application, you would use a JS library (like crypto-js) and a strong algorithm (SHA-256).
+const mockHash = (str) => {
+    // Returns a specific hash only if the input length is correct, simulating a hash match.
+    // Hash for 'Brookhouse01!' is hardcoded here.
+    return str.length > 5 && str.includes('01') ? 'd72379d40b991823b1695420078864f1' : 'FAIL';
+};
 
-    if (GITHUB_CLIENT_ID.includes('YOUR')) {
-        alert("ACCESS DENIED: GitHub OAuth Client ID is not configured. Please replace 'YOUR_GITHUB_OAUTH_CLIENT_ID' in constants.ts.");
+// --- LOCAL HASH LOGIN HANDLER ---
+const handleLocalHashLogin = () => {
+    // 🛑 WARNING: Hash and Username are visible in the browser source code.
+    const EXPECTED_USERNAME = 'scott-hw-ou';
+    const EXPECTED_HASH = 'd72379d40b991823b1695420078864f1'; // Mock Hash of Brookhouse01!
+
+    // Step 1: Prompt for username
+    const inputUsername = window.prompt("Starfleet Admin Login\nEnter Username:");
+    if (inputUsername === null) return; 
+
+    if (inputUsername !== EXPECTED_USERNAME) {
+        alert("ACCESS DENIAL: Username not recognized.");
         return;
     }
-    
-    // Step 1: Redirect user to GitHub for authorization
-    const authUrl = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${SCOPE}`;
-    window.location.href = authUrl;
 
-    alert("Initiating GitHub Authorization Sequence. You will be redirected to the Federation GitHub Console.");
-};
-    
-    // Step 1: Redirect user to GitHub for authorization
-    const authUrl = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${SCOPE}`;
-    window.location.href = authUrl;
+    // Step 2: Prompt for password
+    const inputPassword = window.prompt(`Password hash required for ${EXPECTED_USERNAME}:`);
+    if (inputPassword === null) return; 
 
-    alert("Initiating GitHub Authorization Sequence. You will be redirected to the Federation GitHub Console.");
+    const inputHash = mockHash(inputPassword);
+
+    if (inputHash === EXPECTED_HASH) {
+        alert("ACCESS GRANTED. Welcome, Commander. Initiating Content Management Interface (CMI).");
+    } else {
+        alert("ACCESS DENIAL: Incorrect password hash. Please verify credentials.");
+    }
 };
 // ----------------------------------
 
@@ -328,9 +336,9 @@ const PoliciesContent = () => (
         React.createElement('div', {className: "mt-12 pt-4 border-t-2 border-voyager-orange/50 flex flex-col items-start"},
             React.createElement('p', {className: "mb-3 text-voyager-tan/70 font-mono"}, "--- CLASSIFIED STARFLEET OPS ---"),
             React.createElement('button', {
-                onClick: handleGitHubLogin,
+                onClick: handleLocalHashLogin,
                 className: "bg-voyager-purple hover:bg-voyager-orange text-black font-bold py-2 px-4 transition-colors font-orbitron text-sm shadow-glow-accent",
-            }, "ADMIN ACCESS | CMI Login (GitHub)")
+            }, "ADMIN ACCESS | CMI Login (Hash Check)")
         )
     )
 );
