@@ -1,6 +1,6 @@
 import React from 'react';
 import { Section, SectionName } from './types';
-import { GithubIcon, LinkedinIcon, MailIcon, CodeIcon, UserIcon, PhoneIcon } from './components/Icons';
+import { GithubIcon, LinkedinIcon, MailIcon, CodeIcon, UserIcon, PhoneIcon, ShieldIcon } from './components/Icons';
 
 // FIX: The following components are defined using React.createElement to avoid JSX.
 // This is necessary because this file has a .ts extension, which typically doesn't
@@ -154,6 +154,26 @@ const MissionUpdateContent = () => (
     )
 );
 
+// NEW COMPONENT FOR POLICIES
+const PoliciesContent = () => (
+    React.createElement('div', null,
+        React.createElement('h3', { className: "text-2xl font-orbitron text-voyager-orange mb-4 flex items-center" },
+            React.createElement(ShieldIcon, { className: "w-6 h-6 mr-2" }),
+            "STARFLEET PROTOCOLS: REGULATIONS & GENERAL ORDERS"
+        ),
+        React.createElement('div', { className: "space-y-4" },
+            React.createElement('p', null, "Access to this regulatory data stream is provisional. All Starfleet personnel are advised that the full set of operational guidelines, including Privacy Protocols and Mission Continuity Directives, is pending transmission from Command."),
+            React.createElement('p', null, "Please prepare for data packet reception. Until then, standard Federation security and ethical protocols remain in effect."),
+            // Placeholder for user's future policies
+            React.createElement('div', { className: "mt-6 p-4 border border-voyager-blue/50 bg-black/30" },
+                React.createElement('h4', { className: "text-xl text-voyager-blue font-bold mb-2" }, "CURRENT DIRECTIVE LOG: AWAITING INPUT"),
+                React.createElement('p', { className: "text-voyager-tan/70" }, "The final policy content will be uploaded and integrated once the mission specialist provides the complete official documents.")
+            )
+        )
+    )
+);
+
+
 export const SECTIONS: Record<SectionName, Section> = {
     about: {
         id: 'about',
@@ -174,5 +194,11 @@ export const SECTIONS: Record<SectionName, Section> = {
         id: 'contact',
         title: 'Comms Channel',
         content: React.createElement(ContactContent),
+    },
+    // NEW SECTION ADDED
+    policies: {
+        id: 'policies',
+        title: 'Starfleet Protocols',
+        content: React.createElement(PoliciesContent),
     },
 };
