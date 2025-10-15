@@ -94,7 +94,7 @@ const App: React.FC = () => {
     }
   };
 
-  // Section logic
+  // Section and conditional rendering logic...
   const getCurrentSection = () => {
     if (!currentView || !appData) return null;
     const baseSection = sections[currentView];
@@ -110,7 +110,6 @@ const App: React.FC = () => {
 
   const currentSection = getCurrentSection();
 
-  // App rendering
   if (isLoading) {
     return (
       <div>
@@ -124,7 +123,6 @@ const App: React.FC = () => {
     <div>
       <Header />
       <BackgroundEffects />
-      {/* Main Navigation/Sections */}
       {isCmiMode && isLoggedIn ? (
         <CmiInterface onLogout={handleLogout} />
       ) : currentSection ? (
