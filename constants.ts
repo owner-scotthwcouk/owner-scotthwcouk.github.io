@@ -2,43 +2,12 @@ import React from 'react';
 import { Section, SectionName } from './types';
 import { GithubIcon, LinkedinIcon, MailIcon, CodeIcon, UserIcon, PhoneIcon, ShieldIcon } from './components/Icons';
 
-// --- MOCK HASH FUNCTION ---
-// NOTE: This function is for simulation only. It does not perform actual cryptographic hashing.
-// In a real application, you would use a JS library (like crypto-js) and a strong algorithm (SHA-256).
-const mockHash = (str) => {
-    // Returns a specific hash only if the input length is correct, simulating a hash match.
-    // Hash for 'Brookhouse01!' is hardcoded here.
-    return str.length > 5 && str.includes('01') ? 'd72379d40b991823b1695420078864f1' : 'FAIL';
-};
-
-// --- LOCAL HASH LOGIN HANDLER ---
-const handleLocalHashLogin = () => {
-    // 🛑 WARNING: Hash and Username are visible in the browser source code.
-    const EXPECTED_USERNAME = 'scott-hw-ou';
-    const EXPECTED_HASH = 'd72379d40b991823b1695420078864f1'; // Mock Hash of Brookhouse01!
-
-    // Step 1: Prompt for username
-    const inputUsername = window.prompt("Starfleet Admin Login\nEnter Username:");
-    if (inputUsername === null) return; 
-
-    if (inputUsername !== EXPECTED_USERNAME) {
-        alert("ACCESS DENIAL: Username not recognized.");
-        return;
-    }
-
-    // Step 2: Prompt for password
-    const inputPassword = window.prompt(`Password hash required for ${EXPECTED_USERNAME}:`);
-    if (inputPassword === null) return; 
-
-    const inputHash = mockHash(inputPassword);
-
-    if (inputHash === EXPECTED_HASH) {
-        alert("ACCESS GRANTED. Welcome, Commander. Initiating Content Management Interface (CMI).");
-    } else {
-        alert("ACCESS DENIAL: Incorrect password hash. Please verify credentials.");
-    }
-};
-// ----------------------------------
+// Define interface for the policies content component props
+interface PoliciesContentProps {
+    onLoginSuccess?: () => void;
+    isLoggedIn?: boolean;
+    onLogout?: () => void;
+}
 
 // FIX: The following components are defined using React.createElement to avoid JSX.
 // This is necessary because this file has a .ts extension, which typically doesn't
@@ -46,6 +15,7 @@ const handleLocalHashLogin = () => {
 // Given the constraint to not change file names, this is the correct approach.
 const AboutContent = () => (
     React.createElement('div', null,
+// ... (omitted AboutContent, ProjectsContent, ContactContent, MissionUpdateContent for brevity)
         React.createElement('h3', { className: "text-2xl font-orbitron text-voyager-orange mb-4 flex items-center" },
             React.createElement(UserIcon, { className: "w-6 h-6 mr-2" }),
             "CAPTAIN'S LOG: SCOTT HARVEY-WHITTLE"
@@ -193,7 +163,7 @@ const MissionUpdateContent = () => (
 );
 
 // NEW COMPONENT FOR POLICIES
-const PoliciesContent = () => (
+const PoliciesContent: React.FC<PoliciesContentProps> = ({ onLoginSuccess, isLoggedIn, onLogout }) => (
     React.createElement('div', { className: "space-y-8" },
         React.createElement('h3', { className: "text-2xl font-orbitron text-voyager-orange mb-4 flex items-center" },
             React.createElement(ShieldIcon, { className: "w-6 h-6 mr-2" }),
@@ -335,10 +305,18 @@ const PoliciesContent = () => (
         // --- NEW ADMIN LOGIN BUTTON ---
         React.createElement('div', {className: "mt-12 pt-4 border-t-2 border-voyager-orange/50 flex flex-col items-start"},
             React.createElement('p', {className: "mb-3 text-voyager-tan/70 font-mono"}, "--- CLASSIFIED STARFLEET OPS ---"),
-            React.createElement('button', {
-                onClick: handleLocalHashLogin,
-                className: "bg-voyager-purple hover:bg-voyager-orange text-black font-bold py-2 px-4 transition-colors font-orbitron text-sm shadow-glow-accent",
-            }, "ADMIN ACCESS | CMI Login (Hash Check)")
+            // Conditional Button Rendering
+            isLoggedIn ? (
+                React.createElement('button', {
+                    onClick: onLogout,
+                    className: "bg-voyager-orange hover:bg-voyager-red text-black font-bold py-2 px-4 transition-colors font-orbitron text-sm shadow-glow-accent",
+                }, "LOGOUT (COMMANDER)")
+            ) : (
+                React.createElement('button', {
+                    onClick: onLoginSuccess,
+                    className: "bg-voyager-purple hover:bg-voyager-orange text-black font-bold py-2 px-4 transition-colors font-orbitron text-sm shadow-glow-accent",
+                }, "ADMIN ACCESS | CMI Login")
+            )
         )
     )
 );
