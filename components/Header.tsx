@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShipIcon, WifiIcon, SpeakerWaveIcon, SpeakerXMarkIcon } from '@/components/Icons';
+import Icons from './Icons';
 
 interface HeaderProps {
     isMuted: boolean;
