@@ -165,24 +165,133 @@ const PoliciesContent = () => (
         // --- 1. DATA PROTECTION DIRECTIVE (PRIVACY POLICY) ---
         React.createElement('div', { className: "border-l-2 border-voyager-blue pl-4" },
             React.createElement('h4', { className: "text-xl text-voyager-tan font-bold mb-2" }, "DATA PROTECTION DIRECTIVE: PRIVACY PROTOCOLS"),
+            React.createElement('p', { className: "mb-4 text-voyager-blue/80" }, "Source: UK General Data Protection Regulation (UK GDPR)"),
             
-            // --- INSERT PRIVACY POLICY CONTENT HERE ---
-            React.createElement('div', { className: "mt-4 p-4 border border-voyager-blue/50 bg-black/30 text-voyager-tan" },
-                React.createElement('p', null, "Privacy Policy\n \nEffective Date: 15 October 2025\n \n This Privacy Policy explains how SHW (scott-hw.online) ('we,' 'us,' or 'our') collects, uses, and protects your personal data when you use our services or website. We are committed to complying with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018. \n \nPlease Note: This is an example policy. You must consult with a legal professional to draft a policy that accurately reflects your data processing activities. \n \n1. Who We Are\t\n\nSHW is the data controller responsible for your personal data.\t\n\nCompany Name: SHW\t\n\nRegistered Address: 77 Brookhouse Avenue, Eccles, Greater Manchester, M30 7PB\t\n\nContact Email: scott@scott-hw.online\t\n\n2. The Data We Collect About You\t\n\nWe may collect, use, store, and transfer different kinds of personal data about you, which we have grouped together as follows:\t\n\nIdentity Data: Includes first name, last name, username, marital status, title, date of birth, and gender.\t\n\nContact Data: Includes billing address, delivery address, email address, and telephone numbers.\t\n\nTechnical Data: Includes internet protocol (IP) address, browser type and version, time zone setting and location, operating system and platform, and other technology on the devices you use to access this website.\t\n\nUsage Data: Includes information about how you use our website, products, and services.\t\n\nMarketing and Communications Data: Includes your preferences in receiving marketing from us and your communication preferences.\t\n\n3. Lawful Basis for Processing (UK GDPR)\t\n\nWe will only use your personal data when the law allows us to. Most commonly, we will use your personal data in the following circumstances:\t\n\nPurpose of Processing\t\n\nExample Data Used\t\n\nLawful Basis under UK GDPR\t\n\nTo register you as a new customer\t\n\nIdentity, Contact\t\n\nPerformance of a Contract\t\n\nTo process and deliver your order\t\n\nIdentity, Contact, Financial\t\n\nPerformance of a Contract\t\n\nTo manage our relationship with you\t\n\nIdentity, Contact, Marketing\t\n\nNecessary for our Legitimate Interests (e.g., keeping our records updated)\t\n\nTo send you marketing communications\t\n\nContact, Marketing\t\n\nConsent (where required) or Legitimate Interests (for existing customers)\t\n\nTo protect our business and website\t\n\nTechnical\t\n\nNecessary for our Legitimate Interests (e.g., security and fraud prevention)\t\n\n4. Data Retention\t\n\nWe will only retain your personal data for as long as necessary to fulfil the purposes we collected it for, including for the purposes of satisfying any legal, accounting, or reporting requirements.\t\n\n5. Your Legal Rights (Data Subject Rights)\t\n\nUnder UK GDPR, you have the right to:\t\n\nRequest access to your personal data (commonly known as a 'data subject access request' or DSAR).\t\n\nRequest correction of the personal data that we hold about you.\t\n\nRequest erasure of your personal data (the 'right to be forgotten').\t\n\nObject to processing of your personal data where we are relying on a legitimate interest.\t\n\nRequest restriction of processing of your personal data.\t\n\nRequest the transfer of your personal data to you or a third party (data portability).\t\n\nWithdraw consent at any time where we are relying on consent to process your personal data.\t\n\n6. International Transfers\t\n\nWe may share your personal data with external third parties that are based outside the UK. Whenever we transfer your personal data out of the UK, we ensure a similar degree of protection is afforded to it by ensuring at least one of the following safeguards is implemented:\t\n\nWe will only transfer your personal data to countries that have been deemed to provide an adequate level of protection for personal data by the UK Government.\t\n\nWhere we use certain service providers, we may use specific contracts approved by the UK Government which give personal data the same protection it has in the UK.\t\n\n7. How to Complain\t\n\nIf you have any concerns about our use of your personal data, you can make a complaint to us at scott@scott-hw.online\t\n\nYou also have the right to make a complaint at any time to the UK supervisory authority for data protection issues, the Information Commissioner’s Office (ICO).\t\n\nICO Address: Information Commissioner's Office, Wycliffe House, Water Lane, Wilmslow, Cheshire, SK9 5AF.\t\n\nICO Website: https://www.ico.org.uk/\t")
-                                
+            // --- INSERTED PRIVACY POLICY CONTENT ---
+            React.createElement('div', { className: "mt-4 p-4 border border-voyager-blue/50 bg-black/30 text-voyager-tan space-y-3" },
+                // Metadata
+                React.createElement('p', {className: "text-sm text-voyager-orange/80"}, "Effective Date: 15 October 2025"),
+                React.createElement('p', null, "This Privacy Policy explains how SHW (\"we,\" \"us,\" or \"our\") collects, uses, and protects your personal data when you use our services or website. We are committed to complying with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018."),
+                React.createElement('p', {className: "text-sm italic text-voyager-blue"}, "Please Note: This is an example policy. You must consult with a legal professional to draft a policy that accurately reflects your data processing activities."),
+
+                // Section 1: Who We Are
+                React.createElement('h5', { className: 'text-lg text-voyager-orange mt-4' }, "1. Who We Are"),
+                React.createElement('p', null, "SHW is the data controller responsible for your personal data."),
+                React.createElement('ul', { className: 'list-disc list-inside ml-4' },
+                    React.createElement('li', null, React.createElement('strong', null, "Company Name:"), " SHW"),
+                    React.createElement('li', null, React.createElement('strong', null, "Registered Address:"), " 77 Brookhouse Avenue, Eccles, Greater Manchester, M30 7PB"),
+                    React.createElement('li', null, React.createElement('strong', null, "Contact Email:"), " scott@scott-hw.online"),
+                ),
+
+                // Section 2: The Data We Collect About You
+                React.createElement('h5', { className: 'text-lg text-voyager-orange mt-4' }, "2. The Data We Collect About You"),
+                React.createElement('p', null, "We may collect, use, store, and transfer different kinds of personal data about you, which we have grouped together as follows:"),
+                React.createElement('ul', { className: 'list-disc list-inside ml-4 space-y-1' },
+                    React.createElement('li', null, React.createElement('strong', null, "Identity Data:"), " Includes first name, last name, username, marital status, title, date of birth, and gender."),
+                    React.createElement('li', null, React.createElement('strong', null, "Contact Data:"), " Includes billing address, delivery address, email address, and telephone numbers."),
+                    React.createElement('li', null, React.createElement('strong', null, "Technical Data:"), " Includes internet protocol (IP) address, browser type and version, time zone setting and location, operating system and platform, and other technology on the devices you use to access this website."),
+                    React.createElement('li', null, React.createElement('strong', null, "Usage Data:"), " Includes information about how you use our website, products, and services."),
+                    React.createElement('li', null, React.createElement('strong', null, "Marketing and Communications Data:"), " Includes your preferences in receiving marketing from us and your communication preferences."),
+                ),
+
+                // Section 3: Lawful Basis for Processing (UK GDPR)
+                React.createElement('h5', { className: 'text-lg text-voyager-orange mt-4' }, "3. Lawful Basis for Processing (UK GDPR)"),
+                React.createElement('p', null, "We will only use your personal data when the law allows us to. Most commonly, we will use your personal data in the following circumstances:"),
+                React.createElement('ul', { className: 'list-disc list-inside ml-4 space-y-2' },
+                    React.createElement('li', null, React.createElement('strong', null, "To register you as a new customer:"), " Identity, Contact data are used based on ", React.createElement('strong', null, "Performance of a Contract"), "."),
+                    React.createElement('li', null, React.createElement('strong', null, "To process and deliver your order:"), " Identity, Contact, Financial data are used based on ", React.createElement('strong', null, "Performance of a Contract"), "."),
+                    React.createElement('li', null, React.createElement('strong', null, "To manage our relationship with you:"), " Identity, Contact, Marketing data are used based on ", React.createElement('strong', null, "Necessary for our Legitimate Interests"), " (e.g., keeping our records updated)."),
+                    React.createElement('li', null, React.createElement('strong', null, "To send you marketing communications:"), " Contact, Marketing data are used based on ", React.createElement('strong', null, "Consent"), " (where required) or ", React.createElement('strong', null, "Legitimate Interests"), " (for existing customers)."),
+                    React.createElement('li', null, React.createElement('strong', null, "To protect our business and website:"), " Technical data is used based on ", React.createElement('strong', null, "Necessary for our Legitimate Interests"), " (e.g., security and fraud prevention)."),
+                ),
+
+                // Section 4: Data Retention
+                React.createElement('h5', { className: 'text-lg text-voyager-orange mt-4' }, "4. Data Retention"),
+                React.createElement('p', null, "We will only retain your personal data for as long as necessary to fulfil the purposes we collected it for, including for the purposes of satisfying any legal, accounting, or reporting requirements."),
+
+                // Section 5: Your Legal Rights (Data Subject Rights)
+                React.createElement('h5', { className: 'text-lg text-voyager-orange mt-4' }, "5. Your Legal Rights (Data Subject Rights)"),
+                React.createElement('p', null, "Under UK GDPR, you have the right to:"),
+                React.createElement('ul', { className: 'list-disc list-inside ml-4 space-y-1' },
+                    React.createElement('li', null, React.createElement('strong', null, "Request access"), " to your personal data (commonly known as a \"data subject access request\" or DSAR)."),
+                    React.createElement('li', null, React.createElement('strong', null, "Request correction"), " of the personal data that we hold about you."),
+                    React.createElement('li', null, React.createElement('strong', null, "Request erasure"), " of your personal data (the \"right to be forgotten\")."),
+                    React.createElement('li', null, React.createElement('strong', null, "Object to processing"), " of your personal data where we are relying on a legitimate interest."),
+                    React.createElement('li', null, React.createElement('strong', null, "Request restriction"), " of processing of your personal data."),
+                    React.createElement('li', null, React.createElement('strong', null, "Request the transfer"), " of your personal data to you or a third party (data portability)."),
+                    React.createElement('li', null, React.createElement('strong', null, "Withdraw consent"), " at any time where we are relying on consent to process your personal data."),
+                ),
+
+                // Section 6: International Transfers
+                React.createElement('h5', { className: 'text-lg text-voyager-orange mt-4' }, "6. International Transfers"),
+                React.createElement('p', null, "We may share your personal data with external third parties that are based outside the UK. Whenever we transfer your personal data out of the UK, we ensure a similar degree of protection is afforded to it by ensuring at least one of the following safeguards is implemented:"),
+                React.createElement('ul', { className: 'list-disc list-inside ml-4 space-y-1' },
+                    React.createElement('li', null, "We will only transfer your personal data to countries that have been deemed to provide an adequate level of protection for personal data by the UK Government."),
+                    React.createElement('li', null, "Where we use certain service providers, we may use specific contracts approved by the UK Government which give personal data the same protection it has in the UK."),
+                ),
+
+                // Section 7: How to Complain
+                React.createElement('h5', { className: 'text-lg text-voyager-orange mt-4' }, "7. How to Complain"),
+                React.createElement('p', null, "If you have any concerns about our use of your personal data, you can make a complaint to us at scott@scott-hw.online"),
+                React.createElement('p', null, "You also have the right to make a complaint at any time to the UK supervisory authority for data protection issues, the Information Commissioner’s Office (ICO)."),
+                React.createElement('ul', { className: 'list-disc list-inside ml-4' },
+                    React.createElement('li', null, React.createElement('strong', null, "ICO Address:"), " Information Commissioner's Office, Wycliffe House, Water Lane, Wilmslow, Cheshire, SK9 5AF."),
+                    React.createElement('li', null, React.createElement('strong', null, "ICO Website:"), " https://www.ico.org.uk/"),
+                ),
             )
-            // --- END PRIVACY POLICY CONTENT ---
         ),
 
         // --- 2. GENERAL OPERATIONAL MANDATES (TERMS OF USE) ---
         React.createElement('div', { className: "border-l-2 border-voyager-blue pl-4 mt-8" },
             React.createElement('h4', { className: "text-xl text-voyager-tan font-bold mb-2" }, "GENERAL OPERATIONAL MANDATES: TERMS OF USE"),
+            React.createElement('p', { className: "mb-4 text-voyager-blue/80" }, "Source: SHW (scott-hw.online)"),
             
-            // --- INSERT TERMS OF USE CONTENT HERE ---
-            React.createElement('div', { className: "mt-4 p-4 border border-voyager-blue/50 bg-black/30 text-voyager-tan" },
-                React.createElement('p', null, "The full content of your **Terms of Use** (from your second SharePoint document) must be manually inserted here. As above, ensure all text is enclosed in React.createElement calls to render correctly.")
+            // --- INSERTED TERMS OF USE CONTENT ---
+            React.createElement('div', { className: "mt-4 p-4 border border-voyager-blue/50 bg-black/30 text-voyager-tan space-y-3" },
+                // Metadata
+                React.createElement('p', {className: "text-sm text-voyager-orange/80"}, "Effective Date: 15 October 2025"),
+                React.createElement('p', null, "Welcome to SHW's (scott-hw.online) website/service. These Terms of Use (\"Terms\") govern your use of the SHW (scott-hw.online) website and services (the \"Service\")."),
+
+                // Section 1: Acceptance of Terms
+                React.createElement('h5', { className: 'text-lg text-voyager-orange mt-4' }, "1. Acceptance of Terms"),
+                React.createElement('p', null, "By accessing or using the Service, you confirm that you have read, understood, and agree to be bound by these Terms and our Privacy Policy. If you do not agree with all of these Terms, then you are expressly prohibited from using the Service and must discontinue use immediately."),
+
+                // Section 2: Intellectual Property Rights
+                React.createElement('h5', { className: 'text-lg text-voyager-orange mt-4' }, "2. Intellectual Property Rights"),
+                React.createElement('p', null, "Unless otherwise indicated, the Service and all content, features, and functionality (including, but not limited to, all information, software, text, displays, images, video, and audio, and the design, selection, and arrangement thereof) are owned by SHW (scott-hw.online), its licensors, or other providers of such material and are protected by UK and international copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws."),
+
+                // Section 3: User Obligations and Conduct
+                React.createElement('h5', { className: 'text-lg text-voyager-orange mt-4' }, "3. User Obligations and Conduct"),
+                React.createElement('p', null, "You agree not to use the Service:"),
+                React.createElement('ul', { className: 'list-disc list-inside ml-4 space-y-1' },
+                    React.createElement('li', null, "In any way that violates any applicable UK or international law or regulation."),
+                    React.createElement('li', null, "To transmit, or procure the sending of, any advertising or promotional material, including any \"junk mail,\" \"chain letter,\" \"spam,\" or any other similar solicitation."),
+                    React.createElement('li', null, "To impersonate or attempt to impersonate SHW (scott-hw.online) or any person associated with us."),
+                    React.createElement('li', null, "To engage in any conduct that restricts or inhibits anyone's use or enjoyment of the Service, or which, as determined by us, may harm SHW (scott-hw.online) or users of the Service or expose them to liability."),
+                ),
+
+                // Section 4: Disclaimer of Warranties
+                React.createElement('h5', { className: 'text-lg text-voyager-orange mt-4' }, "4. Disclaimer of Warranties"),
+                React.createElement('p', null, "The Service is provided on an \"as is\" and \"as available\" basis. SHW (scott-hw.online) makes no warranties, whether express or implied, including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, or non-infringement. We do not warrant that the Service will be uninterrupted, error-free, secure, or that defects will be corrected."),
+
+                // Section 5: Limitation of Liability
+                React.createElement('h5', { className: 'text-lg text-voyager-orange mt-4' }, "5. Limitation of Liability"),
+                React.createElement('p', null, "To the fullest extent permitted by applicable law, in no event will SHW (scott-hw.online), its affiliates, officers, directors, employees, agents, suppliers, or licensors be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from:"),
+                React.createElement('ul', { className: 'list-disc list-inside ml-4 space-y-1' },
+                    React.createElement('li', null, "Your access to or use of or inability to access or use the Service;"),
+                    React.createElement('li', null, "Any conduct or content of any third party on the Service;"),
+                    React.createElement('li', null, "Any content obtained from the Service; and"),
+                    React.createElement('li', null, "Unauthorised access, use, or alteration of your transmissions or content."),
+                ),
+
+                // Section 6: Termination
+                React.createElement('h5', { className: 'text-lg text-voyager-orange mt-4' }, "6. Termination"),
+                React.createElement('p', null, "We may terminate or suspend your account and access to the Service immediately, without prior notice or liability, if you breach the Terms. Upon termination, your right to use the Service will immediately cease."),
+
+                // Section 7: Governing Law
+                React.createElement('h5', { className: 'text-lg text-voyager-orange mt-4' }, "7. Governing Law"),
+                React.createElement('p', null, "These Terms and your use of the Service are governed by and construed in accordance with the laws of England and Wales, without regard to its conflict of law principles. You agree to submit to the exclusive jurisdiction of the courts located in England and Wales."),
             )
-            // --- END TERMS OF USE CONTENT ---
         )
     )
 );
