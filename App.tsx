@@ -34,18 +34,21 @@ const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<SectionName | null>(null);
   const [isMuted, setIsMuted] = useState(true);
   const audioRef = useRef<HTMLAudioElement>(null);
-  
-  // NEW STATE FOR AUTH
+  const [time, setTime] = useState(new Date());
+
+  // --- NEW STATES FOR AUTH, DATA, AND LOADING ---
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isCmiMode, setIsCmiMode] = useState(false);
+  const [appData, setAppData] = useState<any>(null); 
+  const [isLoading, setIsLoading] = useState(true);
+  // ---------------------------------------------
 
-  // NEW LOGIN/LOGOUT LOGIC MOVED FROM constants.ts
-  const handleLocalHashLogin = () => {
+  // --- AUTHENTICATION LOGIC ---
+  const handleLocalMockLogin = () => {
     // 🛑 WARNING: This data is visible in the browser source code.
     const EXPECTED_USERNAME = 'scott-hw-ou';
-    const EXPECTED_PASSWORD = 'Brookhouse01!'; // The mock password to enter
+    const EXPECTED_PASSWORD = 'Brookhouse01!';
 
-    // Step 1: Prompt for username
     const inputUsername = window.prompt("Starfleet Admin Login\nEnter Username:");
     if (inputUsername === null) return; 
 
@@ -54,15 +57,13 @@ const App: React.FC = () => {
         return;
     }
 
-    // Step 2: Prompt for password
     const inputPassword = window.prompt(`Password required for ${EXPECTED_USERNAME}:`);
     if (inputPassword === null) return; 
 
-    // Using direct password check here for flow control simplicity, as the hash logic is complex to port.
     if (inputPassword === EXPECTED_PASSWORD) {
         setIsLoggedIn(true);
         alert("ACCESS GRANTED. Welcome, Commander. Initiating Content Management View.");
-        setCurrentView(null); // Return to home view
+        setCurrentView(null);
     } else {
         alert("ACCESS DENIAL: Incorrect password.");
     }
@@ -73,16 +74,37 @@ const App: React.FC = () => {
     setIsCmiMode(false);
     setCurrentView(null);
   };
-  // END NEW LOGIN/LOGOUT LOGIC
+  // -----------------------------
 
+  // --- DATA FETCHING LOGIC ---
+  useEffect(() => {
+    // Fetch data from the new location
+    fetch('/content/data.json')
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return res.json();
+      })
+      .then(data => {
+        setAppData(data);
+        setIsLoading(false);
+      })
+      .catch(err => {
+        console.error("Failed to load app data:", err);
+        setIsLoading(false);
+        alert("ERROR: Failed to load core Starship manifests (data.json). Check console for details.");
+      });
+  }, []);
+  // ---------------------------
+
+  // --- STANDARD EFFECTS ---
   React.useEffect(() => {
     const timerId = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(timerId);
   }, []);
 
   const toggleMute = () => {
-      // We need to interact with the audio element after a user action (like a click)
-      // for browsers to allow it to play.
       const audioEl = audioRef.current;
       if (!audioEl) return;
 
@@ -95,11 +117,45 @@ const App: React.FC = () => {
           setIsMuted(true);
       }
   };
+  // ------------------------
+
+  // --- DATA INJECTION & SECTION GENERATION ---
+  const getCurrentSection = () => {
+    if (!currentView || !appData) return null;
+
+    const baseSection = sections[currentView];
+    
+    // 1. Clone and inject the fetched data prop into the component instance
+    const updatedContent = React.cloneElement(baseSection.content as React.ReactElement, { data: appData });
+
+    // 2. Handle policies section specifically for injecting login handlers
+    if (currentView === 'policies') {
+        return {
+            ...baseSection,
+            content: React.cloneElement(updatedContent, { onLoginSuccess: handleLocalMockLogin, isLoggedIn: isLoggedIn, onLogout: handleLogout }),
+        };
+    }
+
+    return { ...baseSection, content: updatedContent };
+  };
+
+  const currentSection = getCurrentSection();
+  // -------------------------------------------
+
+  // --- CONDITIONAL RENDERING ---
+  if (isLoading) {
+    return (
+      <div className="bg-voyager-bg min-h-screen text-voyager-tan font-mono flex items-center justify-center">
+          <p className="text-xl font-orbitron text-voyager-blue animate-pulse">LOADING STARSHIP MANIFESTS...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-voyager-bg min-h-screen text-voyager-tan font-mono flex flex-col p-2 sm:p-4">
       <audio ref={audioRef} src="/Media/ambient.mp3" loop />
       <Header isMuted={isMuted} toggleMute={toggleMute} />
+      <BackgroundEffects />
       <main className="flex-grow flex flex-col md:flex-row gap-4 mt-4 overflow-hidden">
         <nav className="w-full md:w-64 flex-shrink-0 flex flex-col gap-2 md:gap-4">
           {Object.values(sections).map(section => (
@@ -108,13 +164,13 @@ const App: React.FC = () => {
                   label={section.title}
                   onClick={() => {
                       setCurrentView(section.id);
-                      setIsCmiMode(false); // Exit CMI mode if navigating to a section
+                      setIsCmiMode(false);
                   }}
                   isActive={currentView === section.id && !isCmiMode}
               />
           ))}
           
-          {/* NEW CMI NAVIGATION BUTTON - Visible when logged in */}
+          {/* CMI NAVIGATION BUTTON - Visible when logged in */}
           {isLoggedIn && (
               <NavButton
                   label="CONTENT MANAGER"
@@ -130,15 +186,9 @@ const App: React.FC = () => {
           {/* RENDER CMI INTERFACE */}
           {isCmiMode && isLoggedIn ? (
             <CmiInterface onLogout={handleLogout} />
-          ) : currentView && sections[currentView] ? (
+          ) : currentSection ? (
             <UnlockedSection
-              // Inject login function/state into the policies section content dynamically
-              section={{ 
-                  ...sections[currentView], 
-                  content: currentView === 'policies' 
-                      ? React.cloneElement(sections[currentView].content as React.ReactElement, { onLoginSuccess: handleLocalHashLogin, isLoggedIn: isLoggedIn, onLogout: handleLogout })
-                      : sections[currentView].content
-              }}
+              section={currentSection}
               onClose={() => setCurrentView(null)}
             />
           ) : (
