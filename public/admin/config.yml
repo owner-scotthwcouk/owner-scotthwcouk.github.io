@@ -2,20 +2,15 @@
 # DECAP CMS CONFIGURATION FOR STARSHIP PORTFOLIO
 # ----------------------------------------------------
 
-# --- Backend Configuration (GitHub OAuth) ---
+# --- Backend Configuration (Netlify Git Gateway) ---
 backend:
-  name: github
-  repo: owner-scotthwcouk/owner-scotthwcouk.github.io
-  branch: main
-  base_url: https://github.com
-  auth_endpoint: /api/v1/auth
-  site_url: https://owner-scotthwcouk.github.io/owner-scotthwcouk.github.io-master/ # From package.json homepage
-  auth_scope: repo # Required for committing changes
+  name: git-gateway # Uses Netlify's built-in Git authentication service
+  branch: main      # The branch to commit content changes to
 
 # --- User Interface Configuration ---
-publish_mode: editorial_workflow # Recommended for review/drafts
-media_folder: "public/Media" # The directory where uploaded images/files will be saved
-public_folder: "/Media" # The base path for accessing the files
+publish_mode: editorial_workflow # Allows for draft/review workflow before publishing
+media_folder: "public/Media"     # The directory where uploaded images/files will be saved
+public_folder: "/Media"          # The base path for accessing the files
 
 # --- Collections Configuration (Mapping to data.json) ---
 collections:
@@ -25,49 +20,49 @@ collections:
       preview: false # Disable live preview for simplicity
 
     files:
-      # 1. Mission Logs (Projects) Collection
-      - label: "1. Mission Logs (Projects)"
-        name: "projects_collection"
-        file: "public/content/data.json"
-        description: "Add, update, or delete entries from the Mission Logs section."
+      # This file section MUST match the path where you saved data.json
+      - label: "Starfleet Manifests (data.json)"
+        name: "data_file"
+        file: "public/content/data.json" 
+        description: "Central data manifest for the portfolio sections."
         fields:
-          - label: "Projects"
+          # --- Field structure for data.json ---
+          
+          # 1. About Section (Object)
+          - label: "1. Personal Bio (About)"
+            name: "about"
+            widget: "object"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Profile Image URL", name: "image", widget: "string"}
+              - label: "Paragraphs"
+                name: "paragraphs"
+                widget: "list"
+                field: {label: "Text", name: "text", widget: "markdown"}
+
+          # 2. Projects Section (List)
+          - label: "2. Mission Logs (Projects)"
             name: "projects"
             widget: "list"
-            collapsed: false
+            collapsed: true
             fields:
-              - label: "Title"
-                name: "title"
-                widget: "string"
-              - label: "Stardate"
-                name: "stardate"
-                widget: "string"
-              - label: "Summary"
-                name: "summary"
-                widget: "markdown"
-              - label: "GitHub URL"
-                name: "url"
-                widget: "string"
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Stardate", name: "stardate", widget: "string"}
+              - {label: "Summary", name: "summary", widget: "markdown"}
+              - {label: "GitHub URL", name: "url", widget: "string"}
               - label: "Details/Execution Summary (Optional)"
                 name: "details"
                 widget: "list"
                 collapsed: true
                 fields:
-                  - label: "Heading"
-                    name: "heading"
-                    widget: "string"
+                  - {label: "Heading", name: "heading", widget: "string"}
                   - label: "Items"
                     name: "items"
                     widget: "list"
                     field: {label: "Item Text", name: "item_text", widget: "string"}
 
-      # 2. Mission Updates Collection
-      - label: "2. Mission Updates (Study Directives)"
-        name: "mission_updates_collection"
-        file: "public/content/data.json"
-        description: "Update the academic progress and current directives."
-        fields:
-          - label: "Mission Updates"
+          # 3. Mission Update Section (Object)
+          - label: "3. Mission Updates (Study Directives)"
             name: "mission_update"
             widget: "object"
             fields:
@@ -88,14 +83,9 @@ collections:
                     name: "items"
                     widget: "list"
                     field: {label: "Directive Detail", name: "item_text", widget: "string"}
-    
-      # 3. Starfleet Protocols (Policies) Collection
-      - label: "3. Starfleet Protocols (Policies)"
-        name: "protocols_collection"
-        file: "public/content/data.json"
-        description: "Edit the text content for the Privacy Policy and Terms of Use."
-        fields:
-          - label: "Protocols"
+          
+          # 4. Protocols Section (Object) - Used for Policies
+          - label: "4. Starfleet Protocols (Policies)"
             name: "protocols"
             widget: "object"
             fields:
@@ -134,3 +124,9 @@ collections:
                         name: "items"
                         widget: "list"
                         field: {label: "Item", name: "item", widget: "string", required: false}
+
+
+
+
+
+                        
