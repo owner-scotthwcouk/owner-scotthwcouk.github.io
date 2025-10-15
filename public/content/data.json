@@ -1,0 +1,95 @@
+{
+  "about": {
+    "title": "CAPTAIN'S LOG: SCOTT HARVEY-WHITTLE",
+    "image": "/Media/1722689909-bpfull.webp",
+    "paragraphs": [
+      "My designation is Scott Harvey-Whittle, currently assigned to The Open University. My primary directive is the completion of a BSc (Honours) in Computing and IT.",
+      "Inspired by the voyages of the U.S.S. Voyager, my personal mission is one of perpetual learning and exploration. I am committed to navigating the vast expanse of technology and bringing innovative projects from the conceptual stage into the public domain.",
+      "The final frontier is knowledge, and my journey is to continuously push its boundaries."
+    ]
+  },
+  "projects": [
+    {
+      "title": "Starship Portfolio Interface",
+      "url": "https://github.com/owner-scotthwcouk/owner-scotthwcouk.github.io",
+      "stardate": "2025.Q3",
+      "summary": "After extensive deep-space reconnaissance, Command issued a priority directive: establish a new communications hub. This project, designated 'The Portfolio Interface', required navigating uncharted sectors of React and TypeScript. The mission faced numerous temporal anomalies and subspace distortions, demanding countless system diagnostics and recalibrations. After a long and arduous voyage through the debugging nebula, the interface is now fully operational, providing a stable channel for all incoming transmissions."
+    },
+    {
+      "title": "Code Institute 5 Day Challenge",
+      "url": "https://github.com/Scott-oustudent/code-institute-5-day-coding-challenge-",
+      "stardate": "2025.Q2",
+      "summary": "I embarked on Mission Directive: A 5-day rapid deployment exercise to construct a functional web interface.",
+      "details": [
+        {"heading": "HTML Protocols (Structural Schematics):", "items": ["Headings (<h1>-<h5>): Established communication priority.", "Paragraphs (<p>): Transmitted data logs.", "Images (<img>): Integrated visual reconnaissance data.", "Semantic Tags (<header>, <body>, <footer>): Assembled the main fuselage, command bridge, and engineering sections.", "Links (<link>): Established secure comms links to internal and external data streams."]},
+        {"heading": "CSS Protocols (Aesthetic Calibration):", "items": ["Tag Selectors: Calibrated all standard-issue components for a uniform appearance.", "ID Selectors: Targeted unique, mission-critical components for specific styling. Each ID must be a unique identifier.", "Class Selectors: Applied standard visual protocols to multiple components, allowing for efficient and reusable styling across the fleet of elements."]}
+      ]
+    },
+    {
+      "title": "Cheat Sheets",
+      "url": "https://github.com/Scott-oustudent/Cheat-Sheets",
+      "stardate": "2025.Q1",
+      "summary": "Recognizing a tactical need for immediate access to critical information, I commissioned the establishment of the Cheatsheet Databank.This centralized repository was engineered to serve as a rapid-access archive for all crew members. It contains vital operational schematics and command syntax guides for a wide array of programming dialects and communication protocols, including Markdown. The primary objective is to ensure any operator can swiftly reference complex command structures, streamlining mission execution and enhancing operational efficiency across the fleet."
+    },
+    {
+      "title": "MathTool",
+      "url": "https://github.com/Scott-oustudent/MathTool",
+      "stardate": "2025.Q1",
+      "summary": "During my initial training cycle, while mastering the starship's core Python programming language, I was tasked with a priority mission. The objective was to engineer and deploy a tactical mathematics simulator designed to sharpen a cadet's computational reflexes.The simulation would engage the user by transmitting a series of rapid-response calculations based on four core operational parameters: multiplication, division, addition, and subtraction. Upon completion of the training sequence, the program would analyze the mission data and display a final performance score, logging the cadet's accuracy and efficiency for their official flight record."
+    }
+  ],
+  "mission_update": {
+    "title": "MISSION ASSIGNMENT: THE OPEN UNIVERSITY (STARFLEET ACADEMY)",
+    "updates": [
+      {"stardate": "2023.10", "text": "Intelligence from the 'IT Job Market' sector revealed a recurring prerequisite for deep-space assignments: a formal certification in Computing and IT. Acknowledging this directive, I have been commissioned to a long-term mission with the Open University (OU) Starfleet Academy. My primary objective is to secure a BSc (Honours) in Computing and IT, officially commencing Stardate 2024.02."},
+      {"stardate": "2024.02", "text": "Initial training module MU123 (Discovering Mathematics) proved a formidable challenge, requiring navigation through a dense nebula of foreign formulas and complex equations."},
+      {"stardate": "2024.04", "text": "Received new directive: TM111 (Introduction to Technology, Part 1), providing foundational schematics. Intel confirms a Part 2 is forthcoming, promising advanced protocols including the Python programming dialect."},
+      {"stardate": "2024.08 - 2025.03", "text": "The TM112 project phase was initiated and successfully concluded, marking a significant milestone in operational readiness."},
+      {"stardate": "2025.08", "text": "Confirmed successful integration of modules TM112, TM129, and TM252. Cleared for Level 2 study, a significant leap in operational standards."}
+    ],
+    "directives": [
+      {"heading": "Current Directives: Stardate 2025.09", "text": "With Level 2 operations underway, Command has issued two new, high-priority training directives to enhance capabilities in specialized, deep-space technologies:", "items": ["Directive M250 (Object-Oriented Java Programming): Mastering the complex architecture of the Java language.", "Directive TM257 (Cisco Networking, Part 1): Commencing Phase 1 of the Cisco Inter-Systems Communications Network certification."]},
+      {"heading": "Charting the Final Frontier: Stardate 2026", "text": "Starfleet has transmitted the flight plan for the final stages of my mission. The next phase involves advanced strategic training before I am cleared for Level 3 clearance—a significant leap in command-level operations.", "items": ["Upcoming Directive TM254 (Managing IT): A critical command module on high-level IT strategy.", "Level 3 Protocols: Advanced specializations in Software Engineering (TM354), Cisco Networking Part 2 (TM357), and Interaction Design (TM356)."]},
+      {"heading": "The Capstone Mission: TM470", "text": "My final assignment will be the capstone of my training: The Computing and IT Project (TM470). This extensive, tutor-guided mission will require me to consolidate all acquired knowledge and skills into a single, massive undertaking. Successful completion of TM470 will signify the fulfillment of my primary directive. After a lifetime of anticipation, I will be eligible for graduation. The end of this long voyage is in sight."}
+    ]
+  },
+  "contact": {
+    "title": "COMMUNICATIONS CHANNEL: OPEN",
+    "intro": "To establish a secure comms link for inquiries, collaborations, or distress signals, please use the following encrypted channels. Standard galactic protocols apply.",
+    "channels": [
+      {"type": "email", "value": "scott@scott-hw.online", "href": "mailto:scott@scott-hw.online", "icon": "MailIcon"},
+      {"type": "github", "value": "github.com/scott-oustudent", "href": "https://github.com/scott-oustudent", "icon": "GithubIcon"},
+      {"type": "linkedin", "value": "linkedin.com/in/sphw", "href": "https://linkedin.com/in/sphw", "icon": "LinkedinIcon"}
+    ]
+  },
+  "protocols": {
+    "privacy": {
+      "title": "DATA PROTECTION DIRECTIVE: PRIVACY PROTOCOLS",
+      "source": "UK General Data Protection Regulation (UK GDPR)",
+      "effective_date": "15 October 2025",
+      "sections": [
+        {"heading": "1. Who We Are", "type": "list", "items": ["Company Name: SHW", "Registered Address: 77 Brookhouse Avenue, Eccles, Greater Manchester, M30 7PB", "Contact Email: scott@scott-hw.online"]},
+        {"heading": "2. The Data We Collect About You", "type": "list", "items": ["Identity Data: Includes first name, last name, username, marital status, title, date of birth, and gender.", "Contact Data: Includes billing address, delivery address, email address, and telephone numbers.", "Technical Data: Includes internet protocol (IP) address, browser type and version, time zone setting and location, operating system and platform, and other technology on the devices you use to access this website.", "Usage Data: Includes information about how you use our website, products, and services.", "Marketing and Communications Data: Includes your preferences in receiving marketing from us and your communication preferences."]},
+        {"heading": "3. Lawful Basis for Processing (UK GDPR)", "type": "list", "items": ["To register you as a new customer: Identity, Contact data are used based on Performance of a Contract.", "To process and deliver your order: Identity, Contact, Financial data are used based on Performance of a Contract.", "To manage our relationship with you: Identity, Contact, Marketing data are used based on Necessary for our Legitimate Interests (e.g., keeping our records updated).", "To send you marketing communications: Contact, Marketing data are used based on Consent (where required) or Legitimate Interests (for existing customers).", "To protect our business and website: Technical data is used based on Necessary for our Legitimate Interests (e.g., security and fraud prevention)."]},
+        {"heading": "4. Data Retention", "type": "paragraph", "text": "We will only retain your personal data for as long as necessary to fulfil the purposes we collected it for, including for the purposes of satisfying any legal, accounting, or reporting requirements."},
+        {"heading": "5. Your Legal Rights (Data Subject Rights)", "type": "list", "items": ["Request access to your personal data (commonly known as a \"data subject access request\" or DSAR).", "Request correction of the personal data that we hold about you.", "Request erasure of your personal data (the \"right to be forgotten\").", "Object to processing of your personal data where we are relying on a legitimate interest.", "Request restriction of processing of your personal data.", "Request the transfer of your personal data to you or a third party (data portability).", "Withdraw consent at any time where we are relying on consent to process your personal data."]},
+        {"heading": "6. International Transfers", "type": "list", "items": ["We may share your personal data with external third parties that are based outside the UK. Whenever we transfer your personal data out of the UK, we ensure a similar degree of protection is afforded to it by ensuring at least one of the following safeguards is implemented:", "We will only transfer your personal data to countries that have been deemed to provide an adequate level of protection for personal data by the UK Government.", "Where we use certain service providers, we may use specific contracts approved by the UK Government which give personal data the same protection it has in the UK."]},
+        {"heading": "7. How to Complain", "type": "list", "items": ["If you have any concerns about our use of your personal data, you can make a complaint to us at scott@scott-hw.online", "You also have the right to make a complaint at any time to the UK supervisory authority for data protection issues, the Information Commissioner’s Office (ICO).", "ICO Address: Information Commissioner's Office, Wycliffe House, Water Lane, Wilmslow, Cheshire, SK9 5AF.", "ICO Website: https://www.ico.org.uk/"]}
+      ]
+    },
+    "terms": {
+      "title": "GENERAL OPERATIONAL MANDATES: TERMS OF USE",
+      "source": "SHW (scott-hw.online)",
+      "effective_date": "15 October 2025",
+      "sections": [
+        {"heading": "1. Acceptance of Terms", "type": "paragraph", "text": "By accessing or using the Service, you confirm that you have read, understood, and agree to be bound by these Terms and our Privacy Policy. If you do not agree with all of these Terms, then you are expressly prohibited from using the Service and must discontinue use immediately."},
+        {"heading": "2. Intellectual Property Rights", "type": "paragraph", "text": "Unless otherwise indicated, the Service and all content, features, and functionality (including, but not limited to, all information, software, text, displays, images, video, and audio, and the design, selection, and arrangement thereof) are owned by SHW (scott-hw.online), its licensors, or other providers of such material and are protected by UK and international copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws."},
+        {"heading": "3. User Obligations and Conduct", "type": "list", "intro": "You agree not to use the Service:", "items": ["In any way that violates any applicable UK or international law or regulation.", "To transmit, or procure the sending of, any advertising or promotional material, including any \"junk mail,\" \"chain letter,\" \"spam,\" or any other similar solicitation.", "To impersonate or attempt to impersonate SHW (scott-hw.online) or any person associated with us.", "To engage in any conduct that restricts or inhibits anyone's use or enjoyment of the Service, or which, as determined by us, may harm SHW (scott-hw.online) or users of the Service or expose them to liability."]},
+        {"heading": "4. Disclaimer of Warranties", "type": "paragraph", "text": "The Service is provided on an \"as is\" and \"as available\" basis. SHW (scott-hw.online) makes no warranties, whether express or implied, including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, or non-infringement. We do not warrant that the Service will be uninterrupted, error-free, secure, or that defects will be corrected."},
+        {"heading": "5. Limitation of Liability", "type": "list", "intro": "To the fullest extent permitted by applicable law, in no event will SHW (scott-hw.online), its affiliates, officers, directors, employees, agents, suppliers, or licensors be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from:", "items": ["Your access to or use of or inability to access or use the Service;", "Any conduct or content of any third party on the Service;", "Any content obtained from the Service; and", "Unauthorised access, use, or alteration of your transmissions or content."]},
+        {"heading": "6. Termination", "type": "paragraph", "text": "We may terminate or suspend your account and access to the Service immediately, without prior notice or liability, if you breach the Terms. Upon termination, your right to use the Service will immediately cease."},
+        {"heading": "7. Governing Law", "type": "paragraph", "text": "These Terms and your use of the Service are governed by and construed in accordance with the laws of England and Wales, without regard to its conflict of law principles. You agree to submit to the exclusive jurisdiction of the courts located in England and Wales."}
+      ]
+    }
+  }
+}
