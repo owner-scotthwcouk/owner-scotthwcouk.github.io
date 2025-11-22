@@ -7,28 +7,12 @@ services:
     startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: DATABASE_URL
-        sync: false
-      - key: SECRET_KEY
-        generateValue: true
+        value: sqlite:///./missions.d
+              - key: SECRET_KEY
+                      generateValue: true
       - key: ENVIRONMENT
         value: production
       - key: DEBUG
         value: false
       - key: ALLOWED_ORIGINS
         value: https://owner-scotthwcouk.github.io
-
-  # Static Frontend Service
-  - type: static
-    name: mission-control-frontend
-    buildCommand: npm install && npm run build
-    staticPublishPath: ./dist
-    envVars:
-      - key: VITE_API_URL
-        fromService:
-          type: web
-          name: mission-control-api
-          property: host
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
