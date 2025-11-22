@@ -5,14 +5,16 @@ services:
     env: python
     buildCommand: pip install -r backend/requirements.txt
     startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
-    envVars:
-      - key: DATABASE_URL
-        value: sqlite:///./missions.d
-              - key: SECRET_KEY
-                      generateValue: true
-      - key: ENVIRONMENT
-        value: production
-      - key: DEBUG
-        value: false
-      - key: ALLOWED_ORIGINS
-        value: https://owner-scotthwcouk.github.io
+   envVars:
+  - key: DATABASE_URL
+    value: sqlite:///./missions.d
+        - key: SECRET_KEY
+    # Add your static secret here, or leave value blank and set it securely in the Render dashboard
+    # value: your-secret-value
+  - key: ENVIRONMENT
+    value: production
+  - key: DEBUG
+    value: false
+  - key: ALLOWED_ORIGINS
+    value: https://owner-scotthwcouk.github.io
+
