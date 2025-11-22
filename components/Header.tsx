@@ -1,5 +1,5 @@
 import React from 'react';
-import Icons from './Icons';
+import * as Icons from './Icons';
 
 interface HeaderProps {
     isMuted: boolean;
