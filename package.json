@@ -3,13 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://scotthwcouk.github.io/owner-scotthwcouk.github.io-master/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "preview": "vite preview"
   },
   "dependencies": {
     "react": "^19.1.1",
@@ -20,7 +17,6 @@
     "@types/node": "^22.14.0",
     "@types/react": "^19.1.12",
     "@types/react-dom": "^19.1.9",
-    "gh-pages": "^3.2.3",
     "typescript": "~5.8.2",
     "vite": "^6.2.0"
   }
