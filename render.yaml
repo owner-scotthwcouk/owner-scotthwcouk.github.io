@@ -6,14 +6,13 @@ services:
     buildCommand: pip install -r backend/requirements.txt
     startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
     envVars:
-      - key: DATABASE_URL
-        value: sqlite:///./missions.d
-      - key: SECRET_KEY
-        # Add value or leave blank and set in dashboard
-        # value: your-secret-value
-      - key: ENVIRONMENT
-        value: production
-      - key: DEBUG
-        value: false
-      - key: ALLOWED_ORIGINS
-        value: https://owner-scotthwcouk.github.io
+  - key: DATABASE_URL
+    value: sqlite:///./missions.d
+  # REMOVE the SECRET_KEY entry, or add a 'value'
+  - key: ENVIRONMENT
+    value: production
+  - key: DEBUG
+    value: false
+  - key: ALLOWED_ORIGINS
+    value: https://owner-scotthwcouk.github.io
+
