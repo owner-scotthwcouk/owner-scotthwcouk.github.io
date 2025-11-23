@@ -66,4 +66,19 @@ export const SpeakerXMarkIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props)
     </svg>
 );
 
+
+const Icons = {
+  ShipIcon,
+  WifiIcon,
+  ShieldIcon,
+  UserIcon,
+  CodeIcon,
+  PhoneIcon,
+  MailIcon,
+  GithubIcon,
+  LinkedinIcon,
+  SpeakerWaveIcon,
+  SpeakerXMarkIcon,
+};
+
 export default Icons;
