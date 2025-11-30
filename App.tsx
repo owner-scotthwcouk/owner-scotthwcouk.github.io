@@ -10,7 +10,7 @@ import { BackgroundEffects } from './components/BackgroundEffects';
 const getBasePath = () => {
   const path = window.location.pathname;
   if (path.startsWith('/owner-scotthwcouk.github.io')) {
-    return '/owner-scotthwcouk.github.io/public/';
+    return '/owner-scotthwcouk.github.io/';
   }
 return '/';};
 
