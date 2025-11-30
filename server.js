@@ -10,6 +10,8 @@ const PORT = process.env.PORT || 10000;
 
 // Serve static files from dist
 app.use(express.static(path.join(__dirname, 'dist')));
+// Also serve files from public directory
+app.use(express.static(path.join(__dirname, 'public')));
 
 // All other routes -> index.html (for React Router etc.)
 app.get('*', (_req, res) => {
