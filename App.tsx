@@ -12,8 +12,7 @@ const getBasePath = () => {
   if (path.startsWith('/owner-scotthwcouk.github.io')) {
     return '/owner-scotthwcouk.github.io/public/';
   }
-  return '/public/';
-};
+return '/';};
 
 const App: React.FC = () => {
   const [sections] = useState(SECTIONS);
