@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useMsal } from '@azure/msal-react';
+import { useMsal, useIsAuthenticated } from '@azure/msal-react';
 import { loginRequest } from './authConfig';
 import Admin from "./Admin";
 import "./App.css";
 
 function App() {
-  const { instance, accounts } = useMsal();
+  const { instance } = useMsal();
+  const isAuthenticated = useIsAuthenticated();
   const [currentSection, setCurrentSection] = useState("about");
   const [appData, setAppData] = useState(null);
   const [showAdmin, setShowAdmin] = useState(false);
   const [stardate, setStardate] = useState("");
-
-  // Check if user is authenticated
-  const isAuthenticated = accounts.length > 0;
 
   useEffect(() => {
     // Fetch data from data.json
@@ -35,17 +33,28 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
+  // Handle redirect after login
+  useEffect(() => {
+    instance.handleRedirectPromise().then((response) => {
+      if (response) {
+        setShowAdmin(true);
+      }
+    }).catch((error) => {
+      console.error('Login error:', error);
+    });
+  }, [instance]);
+
   const handleLogin = async () => {
     try {
-      await instance.loginPopup(loginRequest);
-      setShowAdmin(true);
+      // Use redirect instead of popup
+      await instance.loginRedirect(loginRequest);
     } catch (error) {
       console.error('Login failed:', error);
     }
   };
 
   const handleLogout = () => {
-    instance.logoutPopup();
+    instance.logoutRedirect();
     setShowAdmin(false);
   };
 
