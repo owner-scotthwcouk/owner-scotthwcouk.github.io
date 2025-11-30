@@ -1,0 +1,216 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #1a1f35;
+  color: #e0eaff;
+  font-family: 'Orbitron', 'Roboto Mono', monospace;
+  margin: 0;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.main-layout {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+  background: #1a1f35;
+}
+
+/* Header spans full width */
+.trek-header {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 1.5rem 1rem 1rem 1rem;
+  border-bottom: 5px solid #00d4ff;
+  border-top: 3px solid #ff6b35;
+  background: linear-gradient(120deg, #151a32 80%, #00ffff12 100%);
+  letter-spacing: 0.09em;
+}
+
+.trek-header h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.stardate {
+  display: block;
+  font-size: 0.9rem;
+  color: #00ffe5;
+  margin-top: .4em;
+  margin-bottom: .3em;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.uplink {
+  color: #39ff14;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+/* Sidebar navigation */
+.nav-panel {
+  grid-column: 1;
+  grid-row: 2;
+  background: linear-gradient(180deg, #0d1829 70%, #050a14 100%);
+  padding: 2rem 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-right: 8px solid #00d4ff;
+  overflow-y: auto;
+}
+
+.nav-panel button {
+  font: inherit;
+  text-align: left;
+  background: #1a2438;
+  color: #fff;
+  border: none;
+  border-left: 6px solid #00d4ff;
+  border-radius: 8px 0 0 8px;
+  padding: 1em 0.8em;
+  cursor: pointer;
+  font-size: 0.95em;
+  transition:
+    background 0.17s,
+    color 0.22s,
+    border-left 0.14s;
+}
+
+.nav-panel button:hover,
+.nav-panel button:focus {
+  background: #00d4ff;
+  color: #0d1829;
+  border-left: 12px solid #ffe800;
+  font-weight: bold;
+  outline: none;
+}
+
+.nav-panel button:active {
+  background: #ffd700;
+  color: #0d1829;
+  border-left-color: #ff8000;
+}
+
+/* Main content panel */
+.content-panel {
+  grid-column: 2;
+  grid-row: 2;
+  padding: 2.5rem 3vw;
+  background: #1a1f35;
+  overflow-y: auto;
+  font-size: 1.1em;
+  color: #f7f9fa;
+  border: 3px solid #00d4ff;
+  border-left: none;
+}
+
+.content-panel h2 {
+  color: #00d4ff;
+  font-size: 1.5em;
+  margin-bottom: 1rem;
+}
+
+.content-panel p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.content-panel ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.content-panel ul li {
+  margin-bottom: 0.8rem;
+  padding-left: 1.5em;
+  position: relative;
+}
+
+.content-panel ul li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: #00d4ff;
+}
+
+.content-panel a {
+  color: #00d4ff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.content-panel a:hover {
+  color: #ffd700;
+  text-decoration: underline;
+}
+
+/* Project cards */
+.project-list {
+  display: grid;
+  gap: 1.5em;
+  margin-top: 1.5rem;
+}
+
+.project-card {
+  border: 2px solid #00d4ff;
+  border-radius: 12px;
+  background: linear-gradient(100deg, #1a233a 80%, #0f1a2e 100%);
+  padding: 1.5em;
+  transition: all 0.3s;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.project-card:hover {
+  box-shadow: 0 0 25px rgba(0, 212, 255, 0.4);
+  border-color: #ffd700;
+  transform: translateY(-2px);
+}
+
+.project-title {
+  font-size: 1.2em;
+  color: #00d4ff;
+  font-family: 'Orbitron', monospace;
+  font-weight: bold;
+  text-decoration: none;
+  display: block;
+  margin: 0.5em 0;
+}
+
+.project-title:hover {
+  color: #ffd700;
+}
+
+/* Mission update styling */
+.content-panel > div[style*="background:#111930"] {
+  border-radius: 8px;
+}
+
+/* Hide audio element */
+audio {
+  display: none;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d1829;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00d4ff;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0096c7;
+}
