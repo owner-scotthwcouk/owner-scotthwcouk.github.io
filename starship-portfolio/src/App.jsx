@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useMsal, useIsAuthenticated } from '@azure/msal-react';
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { loginRequest } from './authConfig';
 import Admin from "./Admin";
 import "./App.css";
@@ -156,6 +157,7 @@ function App() {
   return (
     <div className="app">
       <audio src="/ambient.mp3" autoPlay loop />
+      <SpeedInsights />
       
       <header className="header">
         <div className="header-title">SCOTT HARVEY-WHITTLE PORTFOLIO INTERFACE</div>
