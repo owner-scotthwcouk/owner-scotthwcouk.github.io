@@ -1,5 +1,0 @@
-{
-  "buildCommand": "npm --prefix starship-portfolio run build",
-  "outputDirectory": "starship-portfolio/dist",
-  "installCommand": "npm --prefix starship-portfolio install"
-}
