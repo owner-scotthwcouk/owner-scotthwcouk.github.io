@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useMsal, useIsAuthenticated } from '@azure/msal-react';
 import { SpeedInsights } from "@vercel/speed-insights/react";
-import { loginRequest } from './authConfig';
 import Admin from "./Admin";
+import LoginModal from "./LoginModal";
 import "./App.css";
 
 function App() {
-  const { instance } = useMsal();
-  const isAuthenticated = useIsAuthenticated();
   const [currentSection, setCurrentSection] = useState("about");
   const [appData, setAppData] = useState(null);
   const [showAdmin, setShowAdmin] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [stardate, setStardate] = useState("");
 
   useEffect(() => {
@@ -34,33 +33,23 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
-  // Handle redirect after login
-  useEffect(() => {
-    instance.handleRedirectPromise().then((response) => {
-      if (response) {
-        setShowAdmin(true);
-      }
-    }).catch((error) => {
-      console.error('Login error:', error);
-    });
-  }, [instance]);
+  const handleLogin = () => {
+    setShowLoginModal(true);
+  };
 
-  const handleLogin = async () => {
-    try {
-      // Use redirect instead of popup
-      await instance.loginRedirect(loginRequest);
-    } catch (error) {
-      console.error('Login failed:', error);
-    }
+  const handleLoginSuccess = () => {
+    setIsLoggedIn(true);
+    setShowLoginModal(false);
+    setShowAdmin(true);
   };
 
   const handleLogout = () => {
-    instance.logoutRedirect();
+    setIsLoggedIn(false);
     setShowAdmin(false);
   };
 
   // Show admin panel if authenticated and admin mode is active
-  if (showAdmin && isAuthenticated) {
+  if (showAdmin && isLoggedIn) {
     return <Admin onLogout={handleLogout} />;
   }
 
@@ -193,7 +182,7 @@ function App() {
           >
             CONTACT
           </button>
-          {isAuthenticated && (
+          {isLoggedIn && (
             <button
               className="nav-button logout-button"
               onClick={handleLogout}
@@ -206,10 +195,18 @@ function App() {
         <main className="content-panel">
           {renderSection()}
         </main>
-                <footer className="footer-admin">
-          <span className="admin-link" onClick={handleLogin} title="Admin Access">⚙</span>
-        </footer>
       </div>
+
+      <footer className="footer-admin">
+        <span className="admin-link" onClick={handleLogin} title="Admin Access">⚙</span>
+      </footer>
+
+      {showLoginModal && (
+        <LoginModal
+          onClose={() => setShowLoginModal(false)}
+          onLoginSuccess={handleLoginSuccess}
+        />
+      )}
     </div>
   );
 }
