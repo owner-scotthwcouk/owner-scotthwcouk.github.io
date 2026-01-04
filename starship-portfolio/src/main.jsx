@@ -6,12 +6,19 @@ import { msalConfig } from './authConfig';
 import App from './App';
 import './index.css';
 
-const msalInstance = new PublicClientApplication(msalConfig);
+export default function App() {
+  return (
+    <div>
+      const msalInstance = new PublicClientApplication(msalConfig);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <MsalProvider instance={msalInstance}>
-      <App />
-    </MsalProvider>
-  </React.StrictMode>
-);
+      ReactDOM.createRoot(document.getElementById('root')).render(
+        <React.StrictMode>
+          <MsalProvider instance={msalInstance}>
+            <App />
+          </MsalProvider>
+        </React.StrictMode>
+      <SpeedInsights />
+    </div>
+  );
+}
+
