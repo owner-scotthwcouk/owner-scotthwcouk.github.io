@@ -214,3 +214,23 @@ audio {
 ::-webkit-scrollbar-thumb:hover {
   background: #0096c7;
 }
+
+  /* Footer admin link styling */
+.footer-admin {
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.admin-link {
+  color: #0ea5e9;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+.admin-link:hover {
+  opacity: 1;
+}
