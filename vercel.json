@@ -1,5 +1,5 @@
 {
-  "buildCommand": "cd starship-portfolio && npm run build",
+  "buildCommand": "npm --prefix starship-portfolio run build",
   "outputDirectory": "starship-portfolio/dist",
-  "installCommand": "cd starship-portfolio && npm install"
+  "installCommand": "npm --prefix starship-portfolio install"
 }
