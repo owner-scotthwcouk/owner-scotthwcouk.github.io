@@ -193,12 +193,6 @@ function App() {
           >
             CONTACT
           </button>
-          <button
-            className="nav-button admin-button"
-            onClick={handleLogin}
-          >
-            ADMIN
-          </button>
           {isAuthenticated && (
             <button
               className="nav-button logout-button"
@@ -212,6 +206,9 @@ function App() {
         <main className="content-panel">
           {renderSection()}
         </main>
+                <footer className="footer-admin">
+          <span className="admin-link" onClick={handleLogin} title="Admin Access">⚙</span>
+        </footer>
       </div>
     </div>
   );
